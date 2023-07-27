@@ -1,0 +1,39 @@
+#results>.thumbnail{
+    background-color: #fff;
+    margin: 10px;
+    padding: 10px;
+    font-family: sans-serif;
+    height: fit-content;
+    box-shadow: 0 2px 12px -5px #00000038;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+#results>.thumbnail>.header{
+    display: flex;
+    flex-direction: row;
+}
+
+#results>.thumbnail>.header>button{
+    background-color: unset;
+    border: unset;
+    width: 40px;
+    height: 40px;
+}
+
+#results>.thumbnail>h1{
+    margin: unset;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+button.thumbnail-settings{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+img.thumbnail-settings{
+    height: 24px;
+    width: 24px;
+}

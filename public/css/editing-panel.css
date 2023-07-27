@@ -1,0 +1,55 @@
+#editing-panel>button{
+    margin: 5px;
+    min-width: 70px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background-color: #fff4;
+    border: solid 3px rgba(181, 179, 179, 0.241);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: ease 500ms background-color, ease 500ms border-color;
+}
+
+#editing-panel>button:hover{
+    background-color: #fffb;
+}
+
+#editing-panel>button>section{
+    flex-grow: 10;
+}
+
+#editing-panel>button>img{
+    height: 30px;
+    width: 30px;
+    max-height: 30px;
+    margin: auto;
+    flex-grow: 3;
+    opacity: 0.55;
+    transition: ease 500ms opacity;
+}
+
+#editing-panel>button>div{
+    width: -webkit-min-content;
+    text-align: center;
+    margin: auto;
+    flex-grow: 2;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding-left: 5px;
+    padding-right: 5px;
+    flex-grow: 1;
+}
+
+#editing-panel>button.selected{
+    border: solid 3px rgba(66, 164, 244, 0.5);
+}
+
+#editing-panel>button.selected>img{
+    opacity: 1;
+}
+
+#editing-panel>div{
+    flex-grow: 1;
+    min-width: 40px;
+}

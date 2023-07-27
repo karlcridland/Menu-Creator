@@ -1,0 +1,87 @@
+html, body{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+button{
+    color: #000;
+}
+
+#editor{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: ease filter 300ms;
+}
+
+#editor.hide{
+    filter: blur(2px);
+}
+
+#editing-panel{
+    height: 100px;
+    min-height: 100px;
+    background-color: #eceff4;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.125);
+    overflow: scroll;
+}
+
+#results-panel{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    background-color: #f7f7f7;
+    overflow: hidden;
+}
+
+#category-panel{
+    background-color: #fff;
+    border-right: 2px solid rgba(128, 128, 128, 0.125);
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    overflow: scroll;
+}
+
+#results{
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    grid-row-gap: 0;
+    padding: 10px;
+    height: fit-content;
+    max-height: 100%;
+    overflow: scroll;
+    min-width: fit-content;
+}
+
+#editor>input{
+    padding: 12px;
+    font-size: 1.1rem;
+    border: unset;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.125);
+    transition: ease all 300ms;
+    z-index: 10;
+}
+
+#editor>input.not-searching,
+#editor>input.not-searching::placeholder{
+    height: 0;
+    color: unset;
+    padding: 0;
+    z-index: -2;
+}

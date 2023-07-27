@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu Creator</title>
+  <link href="./css/index.css" rel="stylesheet">
+  <link href="./css/editing-panel.css" rel="stylesheet">
+  <link href="./css/category-panel.css" rel="stylesheet">
+  <link href="./css/results.css" rel="stylesheet">
+  <link href="./css/edit-item.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="editor">
+    <div id="editing-panel"></div>
+    <input id="search" placeholder="Search" class="not-searching">
+    <div id="results-panel">
+      <div id="category-panel"></div>
+      <div id="results"></div>
+    </div>
+    <div id="edit-item-container">
+      <div id="edit-item">
+        <input id="edit-item-title">
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./script/Firebase.js" type="module"></script>
+<script src="./script/editing-panel.js" type="module"></script>
+<script src="./script/results.js" type="module"></script>
+
+<script>
+  setTimeout(() => {
+    document.getElementById('new-item').click();
+  }, 100);
+</script>
+
+</html>

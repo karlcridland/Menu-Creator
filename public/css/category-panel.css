@@ -1,0 +1,44 @@
+#category-panel>button{
+    padding: 20px;
+    background-color: unset;
+    border: unset;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    line-height: 1.4rem;
+    position: relative;
+}
+
+#category-panel>button>div{
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+#category-panel>button>span{
+    text-align: left;
+    font-weight: 400;
+    font-size: 0.8rem;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: -webkit-fill-available;
+    color: rgb(88, 88, 88);
+}
+
+#category-panel>button:hover{
+    background-color: rgba(128, 128, 128, 0.06);
+}
+
+button.selected-category::after{
+    content: '';
+    position: absolute;
+    display: block;
+    right: 3px;
+    top: 3px;
+    height: calc(100% - 6px);
+    width: 3px;
+    border-radius: 2px;
+    background-color: #6785bf;
+    box-shadow: 2px 0 15px 0 #6785bf;
+}
