@@ -22,14 +22,49 @@
     </div>
     <div id="edit-item-container">
       <div id="edit-item">
+        <h1>create item</h1>
+
+        <h6>title <span>*</span></h6>
         <input id="edit-item-title">
+
+        <h6>subtitle</h6>
         <input id="edit-item-subtitle">
-        <div id="edit-item-ingredients"></div>
-        <div id="edit-item-nutrition">
-          <input id="edit-item-calories">
-          <input id="edit-item-carbohydrates">
-          <input id="edit-item-protein">
+
+        <h6>ingredients <span>*</span></h6>
+        <div id="edit-item-ingredients-wrapper">
+          <div id="edit-item-ingredients"></div>
+          <div id="edit-item-ingredients-buttons">
+            <button>add</button>
+            <div></div>
+            <button>clear</button>
+          </div>
         </div>
+
+        <h6>nutritional information</h6>
+        <div id="edit-item-nutrition">
+          <div>
+            <label title="calories">calories</label>
+            <input name="calories" id="edit-item-calories">
+          </div>
+          <div>
+            <label title="carbohydrates">carbohydrates</label>
+            <input name="carbohydrates" id="edit-item-carbohydrates">
+          </div>
+          <div>
+            <label title="sugar">sugar</label>
+            <input name="sugar" id="edit-item-sugar">
+          </div>
+          <div>
+            <label title="protein">protein</label>
+            <input name="protein" id="edit-item-protein">
+          </div>
+        </div>
+
+        <div id="edit-item-action-buttons">
+          <button id="edit-item-cancel">cancel</button>
+          <button id="edit-item-save">save</button>
+        </div>
+
       </div>
     </div>
   </div>
