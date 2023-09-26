@@ -1,8 +1,8 @@
-:root{
+:root {
     --border-color: #959595;
 }
 
-#edit-item-container{
+#edit-item-container {
     position: absolute;
     left: 0;
     top: 0;
@@ -17,7 +17,7 @@
     flex-direction: column;
 }
 
-#edit-item{
+#edit-item {
     width: 500px;
     max-width: calc(100% - 80px);
     height: fit-content;
@@ -30,7 +30,14 @@
     padding: 20px;
 }
 
-#edit-item>input{
+#edit-item>#edit-item-header {
+    display: flex;
+    flex-direction: row;
+    width: -webkit-fill-container;
+}
+
+#edit-item>#edit-item-header>div>input,
+#edit-item>input {
     border: unset;
     border-bottom: 2px solid var(--border-color);
     padding: 6px 8px;
@@ -40,23 +47,26 @@
     width: -webkit-fill-available;
 }
 
-#edit-item>h1{
+#edit-item>#edit-item-header>div>h1,
+#edit-item>h1 {
     font-family: sans-serif;
     margin: 0;
     margin-bottom: 30px;
 }
 
-#edit-item>h6{
+#edit-item>#edit-item-header>div>h6,
+#edit-item>h6 {
     font-family: sans-serif;
     margin: 0;
     font-size: 1rem;
 }
 
-#edit-item>h6>span{
+#edit-item>#edit-item-header>div>h6>span,
+#edit-item>h6>span {
     color: #f00;
 }
 
-#edit-item-ingredients-wrapper{
+#edit-item-ingredients-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -66,7 +76,8 @@
     min-height: 200px;
 }
 
-#edit-item-ingredients{
+#edit-item-ingredients,
+#edit-item-pick-category {
     position: relative;
     height: 100%;
     flex-grow: 1;
@@ -74,7 +85,12 @@
     border-radius: 6px;
 }
 
-#edit-item-ingredients-buttons{
+#edit-item-pick-category{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#edit-item-ingredients-buttons {
     position: relative;
     min-width: 80px;
     height: calc(100% + 3px);
@@ -82,9 +98,10 @@
     flex-direction: column;
     justify-content: space-between;
     margin-left: 10px;
+    display: none;
 }
 
-#edit-item-ingredients-buttons>button{
+#edit-item-ingredients-buttons>button {
     flex-grow: 1;
     background-color: unset;
     border: solid 2px var(--border-color);
@@ -94,11 +111,11 @@
     font-weight: 900;
 }
 
-#edit-item-ingredients-buttons>div{
+#edit-item-ingredients-buttons>div {
     height: 10px;
 }
 
-#edit-item-nutrition{
+#edit-item-nutrition {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -108,23 +125,23 @@
     padding: 20px;
 }
 
-#edit-item-nutrition>div{
+#edit-item-nutrition>div {
     flex-grow: 1;
     max-width: 100px;
 }
 
-#edit-item-nutrition>div>input{
+#edit-item-nutrition>div>input {
     width: -webkit-fill-available;
 }
 
-#edit-item-nutrition>div>label{
+#edit-item-nutrition>div>label {
     font-family: sans-serif;
     color: #000;
     font-size: 0.8rem;
     font-weight: 900;
 }
 
-#edit-item-action-buttons{
+#edit-item-action-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -132,7 +149,7 @@
     margin-bottom: 0;
 }
 
-#edit-item-action-buttons>button{
+#edit-item-action-buttons>button {
     border: unset;
     padding: 10px 20px;
     border-radius: 4px;
@@ -141,12 +158,52 @@
     font-weight: 700;
 }
 
-#edit-item-save{
+#edit-item-save {
     background-color: #46d00e;
     color: #fff;
 }
 
-#edit-item-cancel{
+#edit-item-cancel {
     background-color: #0000;
     color: rgb(241, 55, 55);
+}
+
+#edit-item-category {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-grow: 1;
+}
+
+#edit-item{
+    padding: 0;
+}
+
+#edit-item-header-2{
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 1)), url('../resources/template.jpg');;
+    background-size: cover;
+    background-position: top;
+    width: -webkit-fill-available;
+    min-height: 200px;
+}
+
+#edit-item-footer-2{
+    width: -webkit-fill-available;
+    min-height: 200px;
+}
+
+#edit-item-toolbar{
+    padding: 5px;
+}
+
+#edit-item-toolbar:nth-child(0){
+    text-decoration: underline;
+}
+
+#edit-item-toolbar>button{
+    margin: 5px;
+    border: unset;
+    background-color: unset;
+    font-size: 1rem;
 }

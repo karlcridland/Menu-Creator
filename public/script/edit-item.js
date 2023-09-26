@@ -2,6 +2,7 @@ import { editor } from "./editing-panel.js";
 
 export const editItemDiv = document.getElementById('edit-item');
 export const editContainer = document.getElementById('edit-item-container');
+export const editItemClose = document.getElementById('edit-item-cancel');
 
 export function editItem(){
     editContainer.style.transform = 'unset';
@@ -10,17 +11,17 @@ export function editItem(){
     }, 20);
 }
 
-export function closeEditItem(){
-    editContainer.style.opacity = '0';
-    setTimeout(() => {
-        editContainer.style.transform = 'translateX(100%)';
-    }, 300);
-}
+// export function closeEditItem(){
+//     editContainer.style.opacity = '0';
+//     setTimeout(() => {
+//         editContainer.style.transform = 'translateX(100%)';
+//     }, 300);
+// }
 
-editContainer.onclick = function(){
-    closeEditItem();
-};
+// editItemDiv.onclick = function(e){
+//     e.stopPropagation();
+// }
 
-editItemDiv.onclick = function(e){
-    e.stopPropagation();
-}
+// editContainer.onclick = closeEditItem;
+// editItemClose.onclick = closeEditItem;
+

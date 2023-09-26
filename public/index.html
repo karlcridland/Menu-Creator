@@ -5,11 +5,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Menu Creator</title>
-  <link href="./css/index.css" rel="stylesheet">
-  <link href="./css/editing-panel.css" rel="stylesheet">
-  <link href="./css/category-panel.css" rel="stylesheet">
-  <link href="./css/results.css" rel="stylesheet">
-  <link href="./css/edit-item.css" rel="stylesheet">
+  <link href="./style/index.css" rel="stylesheet">
+  <link href="./style/editing-panel.css" rel="stylesheet">
+  <link href="./style/category-panel.css" rel="stylesheet">
+  <link href="./style/results.css" rel="stylesheet">
+  <link href="./style/edit-item.css" rel="stylesheet">
 </head>
 
 <body>
@@ -22,13 +22,32 @@
     </div>
     <div id="edit-item-container">
       <div id="edit-item">
-        <h1>create item</h1>
+        <div id="edit-item-header-2">
+          
+        </div>
+        <div id="edit-item-footer-2">
+          <div id="edit-item-toolbar">
+            <button>title</button>
+            <button>subtitle</button>
+            <button>ingredients</button>
+            <button>nutrition</button>
+          </div>
+        </div>
+        <!-- <h1>create item</h1>
 
-        <h6>title <span>*</span></h6>
-        <input id="edit-item-title">
+        <div id="edit-item-header">
+          <div>
+            <h6>title <span>*</span></h6>
+            <input id="edit-item-title">
 
-        <h6>subtitle</h6>
-        <input id="edit-item-subtitle">
+            <h6>subtitle</h6>
+            <input id="edit-item-subtitle">
+          </div>
+          <div id="edit-item-category">
+            <h6>category <span>*</span></h6>
+            <div id="edit-item-pick-category"></div>
+          </div>
+        </div>
 
         <h6>ingredients <span>*</span></h6>
         <div id="edit-item-ingredients-wrapper">
@@ -63,20 +82,21 @@
         <div id="edit-item-action-buttons">
           <button id="edit-item-cancel">cancel</button>
           <button id="edit-item-save">save</button>
-        </div>
+        </div> -->
 
       </div>
     </div>
   </div>
 </body>
-<script src="./script/Firebase.js" type="module"></script>
+<script src="./script/firebase.js" type="module"></script>
+<script src="./script/profile.js" type="module"></script>
 <script src="./script/editing-panel.js" type="module"></script>
 <script src="./script/results.js" type="module"></script>
 
 <script>
   setTimeout(() => {
     document.getElementById('new-item').click();
-  }, 100);
+  }, 200);
 </script>
 
 </html>

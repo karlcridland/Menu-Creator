@@ -1,31 +1,20 @@
-import { MenuItem } from "./MenuItem.js";
+import { readDBKeys } from "./firebase.js";
+import { MenuItem } from "./menu-item.js";
+import { profile } from "./profile.js";
 
-let results = [];
+export let results = [];
 let openCategory = 'All';
 
 const categoryPanel = document.getElementById('category-panel');
 const resultsDiv = document.getElementById('results');
 
-function getResults(){
-    //TODO: this is temporary code, create a call to a database to get information through
-
-    const menuItemA = new MenuItem("", "Chicken Wrap", "Lunch");
-    const menuItemB = new MenuItem("", "Chocolate Pudding", "Dessert");
-    const menuItemC = new MenuItem("", "BLT Sandwich", "Lunch");
-    const menuItemD = new MenuItem("", "Full English", "Breakfast");
-    const menuItemE = new MenuItem("", "Full English", "Breakfast");
-    const menuItemF = new MenuItem("", "Full English", "Breakfast");
-    const menuItemG = new MenuItem("", "Full English", "Breakfast");
-    const menuItemH = new MenuItem("", "Full English", "Breakfast");
-    const menuItemI = new MenuItem("", "Full English", "Breakfast");
-    const menuItemJ = new MenuItem("", "Full English", "Breakfast");
-
-    [menuItemA, menuItemB, menuItemC, menuItemD, menuItemE, menuItemF, menuItemG, menuItemH, menuItemI, menuItemJ].forEach(function(item){
-        results.push(item);
+export function getResults(){
+    readDBKeys(`menus/${profile.uid}/`, (keys) => {
+        keys.forEach((id) => {
+            const menuItem = new MenuItem(id);
+            if (results.filter((x) => x.id === id) < 1) results.push(menuItem);
+        });
     })
-
-    displayCategories();
-
 }
 
 function displayResults(res){
@@ -53,9 +42,11 @@ function displayResults(res){
     window.onresize = adaptResultSizes;
 }
 
-function displayCategories(){
+export function displayCategories(){
     let categories = {"All": [], "Visible": [], "Hidden": []};
     let buttons = {};
+
+    console.log(results)
 
     categoryPanel.innerHTML = '';
 
@@ -68,7 +59,7 @@ function displayCategories(){
     Object.entries(categories).forEach(([category, res]) => {
         const button = createElement(categoryPanel, 'button', 'category');
         buttons[category] = button;
-        button.innerHTML = `<div>${category} (${res.length})</div><span>${res.map(x => x.name).join(', ')}</span>`;
+        button.innerHTML = `<div>${category} (${res.length})</div><span>${res.map(x => x.title).join(', ')}</span>`;
         button.addEventListener('click', () => {
             openCategory = category;
             displayResults(res);
@@ -83,8 +74,6 @@ function displayCategories(){
 
     buttons[openCategory].click();
 }
-
-getResults();
 
 export function createElement(target, type, elementClass, id){
     const element = document.createElement(type);
