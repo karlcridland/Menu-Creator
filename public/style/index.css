@@ -4,6 +4,7 @@ html, body{
     padding: 0;
     margin: 0;
     overflow: hidden;
+    font-family: sans-serif !important;
 }
 
 textarea:focus, input:focus{
@@ -45,16 +46,6 @@ button{
     flex-direction: row;
     background-color: #f7f7f7;
     overflow: hidden;
-}
-
-#category-panel{
-    background-color: #fff;
-    border-right: 2px solid rgba(128, 128, 128, 0.125);
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    overflow: scroll;
 }
 
 #results{

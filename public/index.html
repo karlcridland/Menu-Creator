@@ -17,73 +17,27 @@
     <div id="editing-panel"></div>
     <input id="search" placeholder="Search" class="not-searching">
     <div id="results-panel">
-      <div id="category-panel"></div>
+      <div id="category-panel">
+        <div id="category-results"></div>
+        <div id="category-settings"><button id="new-category"><img src="./resources/plus.svg"></button></div>
+      </div>
       <div id="results"></div>
     </div>
     <div id="edit-item-container">
       <div id="edit-item">
         <div id="edit-item-header-2">
+          <h1 id="edit-item-title"></h1>
+          <div id="edit-item-toolbar">
+          </div>
           
         </div>
         <div id="edit-item-footer-2">
-          <div id="edit-item-toolbar">
-            <button>title</button>
-            <button>subtitle</button>
-            <button>ingredients</button>
-            <button>nutrition</button>
-          </div>
         </div>
-        <!-- <h1>create item</h1>
-
-        <div id="edit-item-header">
-          <div>
-            <h6>title <span>*</span></h6>
-            <input id="edit-item-title">
-
-            <h6>subtitle</h6>
-            <input id="edit-item-subtitle">
-          </div>
-          <div id="edit-item-category">
-            <h6>category <span>*</span></h6>
-            <div id="edit-item-pick-category"></div>
-          </div>
-        </div>
-
-        <h6>ingredients <span>*</span></h6>
-        <div id="edit-item-ingredients-wrapper">
-          <div id="edit-item-ingredients"></div>
-          <div id="edit-item-ingredients-buttons">
-            <button>add</button>
-            <div></div>
-            <button>clear</button>
-          </div>
-        </div>
-
-        <h6>nutritional information</h6>
-        <div id="edit-item-nutrition">
-          <div>
-            <label title="calories">calories</label>
-            <input name="calories" id="edit-item-calories">
-          </div>
-          <div>
-            <label title="carbohydrates">carbohydrates</label>
-            <input name="carbohydrates" id="edit-item-carbohydrates">
-          </div>
-          <div>
-            <label title="sugar">sugar</label>
-            <input name="sugar" id="edit-item-sugar">
-          </div>
-          <div>
-            <label title="protein">protein</label>
-            <input name="protein" id="edit-item-protein">
-          </div>
-        </div>
-
-        <div id="edit-item-action-buttons">
-          <button id="edit-item-cancel">cancel</button>
-          <button id="edit-item-save">save</button>
-        </div> -->
-
+        <button id="edit-item-camera" class="edit-item-button"><img src="./resources/camera.svg"></button>
+        <button id="edit-item-hidden" class="edit-item-button"><img id="eyeball" src="./resources/visible.svg"></button>
+        <button id="edit-item-favourite" class="edit-item-button"><img id="favourite" src="./resources/favourite-no.svg"></button>
+        <button id="edit-item-delete" class="edit-item-button"><img src="./resources/trash.svg"></button>
+        <button id="edit-item-close" class="edit-item-button"><img src="./resources/close.svg"></button>
       </div>
     </div>
   </div>
@@ -92,11 +46,9 @@
 <script src="./script/profile.js" type="module"></script>
 <script src="./script/editing-panel.js" type="module"></script>
 <script src="./script/results.js" type="module"></script>
+<script src="./script/ingredient.js" type="module"></script>
 
 <script>
-  setTimeout(() => {
-    document.getElementById('new-item').click();
-  }, 200);
 </script>
 
 </html>

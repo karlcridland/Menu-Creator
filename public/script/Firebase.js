@@ -57,3 +57,23 @@ onAuthStateChanged(auth, (user) => {
         profile = undefined;
     }
 });
+
+// writeDB('ingredients/ING000203', {
+//     "locales": {
+//         "en": "eggs",
+//         "es": "huevos",
+//         "fr": "œufs",
+//         "pl": "jajka",
+//         "pt": "ovos",
+//         "zh": "鸡蛋",
+//         "el": "αυγά",
+//         "ru": "яйца",
+//         "jp": "卵",
+//         "it": "uova",
+//         "hu": "tojás",
+//         "de": "Eier"
+//     },
+//     "name": "eggs",
+//     "tags": ["dairy"]
+
+// });

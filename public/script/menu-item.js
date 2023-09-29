@@ -1,35 +1,42 @@
 import { updateCategories } from "./categories.js";
+import { editItem } from "./edit-item.js";
 import { readDB, writeDB } from "./firebase.js";
+import { ingredients } from "./ingredient.js";
 import { profile } from "./profile.js";
 import { createElement, displayCategories, results } from "./results.js";
 import { months } from "./utilities.js";
 
-export class MenuItem{
+export class MenuItem {
 
-    constructor(id){
+    constructor(id) {
         this.id = id || this.createID();
-        this.getData();
+        this.ingredients = [];
         this.hidden = true;
+
+        this.titleReady = false;
+        this.categoryReady = false;
+        this.ingredientsReady = false;
     }
 
-    isReady(){
+    isReady() {
         if (this.ready) return true;
-        const titleReady = this.title !== undefined;
-        const categoryReady = this.category !== undefined;
-        const ingredientsReady = this.ingredients !== undefined;
-        if (titleReady && categoryReady && ingredientsReady){
+        this.titleReady = this.title;
+        this.categoryReady = this.category;
+        this.ingredientsReady = this.ingredients.length > 0;
+        if (this.titleReady && this.categoryReady && this.ingredientsReady) {
             this.ready = true;
             return true;
         }
+
         return false;
     }
 
-    display(){
+    display() {
         if (results.filter((x) => x.id === this.id) < 1) results.push(this);
         if (this.isReady()) displayCategories();
     }
 
-    createID(){
+    createID() {
         const now = new Date();
         const year = now.getFullYear();
         const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -40,11 +47,12 @@ export class MenuItem{
         return `${year}:${month}:${day}:${hours}:${minutes}:${seconds}`;
     }
 
-    setHidden(){
+    setHidden() {
+        const uid = profile.uid;
         writeDB(`menus/${uid}/${this.id}/hidden`, this.hidden);
     }
 
-    getHidden(){
+    getHidden() {
         const menuItem = this;
         const uid = profile.uid;
         readDB(`menus/${uid}/${this.id}/hidden`, (hidden) => {
@@ -53,7 +61,7 @@ export class MenuItem{
         });
     }
 
-    setTitles(title, subtitle){
+    setTitles(title, subtitle) {
         this.title = title;
         this.subtitle = subtitle;
         const uid = profile.uid;
@@ -61,7 +69,7 @@ export class MenuItem{
         writeDB(`menus/${uid}/${this.id}/subtitle`, this.subtitle);
     }
 
-    getTitles(){
+    getTitles() {
         const menuItem = this;
         const uid = profile.uid;
         readDB(`menus/${uid}/${this.id}/title`, (title) => {
@@ -74,13 +82,13 @@ export class MenuItem{
         });
     }
 
-    setCategory(category){
+    setCategory(category) {
         const uid = profile.uid;
         if (category) this.category = category;
         writeDB(`menus/${uid}/${this.id}/category`, this.category);
     }
 
-    getCategory(){
+    getCategory() {
         const menuItem = this;
         const uid = profile.uid;
         readDB(`menus/${uid}/${this.id}/category`, (category) => {
@@ -90,56 +98,115 @@ export class MenuItem{
         });
     }
 
-    setIngredients(ingredients, callback){
+    setIngredients(ingredients, callback) {
         const uid = profile.uid;
         if (ingredients) this.ingredients = ingredients;
         writeDB(`menus/${uid}/${this.id}/ingredients`, this.ingredients);
     }
 
-    getIngredients(){
+    getIngredients() {
         const menuItem = this;
         const uid = profile.uid;
-        readDB(`menus/${uid}/${this.id}/ingredients`, (ingredients) => {
-            menuItem.ingredients = ingredients;
+        readDB(`menus/${uid}/${this.id}/ingredients`, (ingr) => {
+            menuItem.ingredients = ingr.map(x => ingredients[x]) || [];
             menuItem.display();
         });
     }
 
-    getData(){
+    getData() {
         this.getTitles();
         this.getCategory();
         this.getIngredients();
+        this.getHidden();
     }
 
-    getThumbnail(){
+    symbols() {
+        const menuItem = this;
+        const entries = { 
+            'vegetarian': menuItem.isVegetarian(),
+            'vegan': menuItem.isVegan(),
+            'favourite': menuItem.isFavourited(),
+        };
+
+        let all_symbols = [];
+        Object.entries(entries).forEach(([id, shouldContinue]) => {
+            if (shouldContinue){
+                const symbol = createElement(undefined, 'button', 'thumbnail-symbol');
+                symbol.setAttribute('style', 'margin-left: unset');
+                const image = createElement(symbol, 'img', 'thumbnail-symbol');
+                image.src = `../resources/${id}.png`;
+                all_symbols.push(symbol);
+            }
+        })
+
+        return all_symbols;
+    }
+
+    getThumbnail() {
+        const menuItem = this;
         const thumbnail = createElement(undefined, 'div', 'thumbnail');
         const header = createElement(thumbnail, 'div', 'header');
-        const date = createElement(header, 'div', 'date');
+        const date = createElement(header, 'button', 'date');
+        const dateImage = createElement(date, 'img', 'date');
+
+        this.symbols().forEach((symbol) => {
+            header.appendChild(symbol);
+        })
+
+        createElement(header, 'div', 'buffer');
         const settings = createElement(header, 'button', 'thumbnail-settings');
         const settingsImage = createElement(settings, 'img', 'thumbnail-settings');
-        const title = createElement(thumbnail, 'h1');
-        const subtitle = createElement(thumbnail, 'h2');
-        const ingredients = createElement(thumbnail, 'h3');
+        const text = createElement(thumbnail, 'div', 'text-section');
+        const title = createElement(text, 'h1');
+        const subtitle = createElement(text, 'h2');
+        const ingredients = createElement(text, 'h3');
 
         settingsImage.src = './resources/settings.svg';
 
-        date.style.flexGrow = '1';
         title.textContent = this.title;
         subtitle.textContent = this.subtitle;
-        ingredients.textContent = this.ingredients.join(', ');
+        ingredients.textContent = this.ingredients.map(x => x.locales[profile.language]).join(', ') + '.';
 
         const ds = this.id.split(':');
-        date.textContent = `${ds[3]}:${ds[4]} ${ds[2].ordinate()} ${months[Number(ds[1])-1]} ${ds[0]}`;
+        const timestamp = `${ds[3]}:${ds[4]} ${ds[2].ordinate()} ${months[Number(ds[1]) - 1]} ${ds[0]}`;
+        dateImage.src = `../resources/sortbycreated.svg`;
+        date.title = timestamp;
+
+        settingsImage.addEventListener('click', () => {
+            editItem(menuItem);
+        });
+
+        // settingsImage.click();
 
         return thumbnail;
     }
 
+    isVegetarian() {
+        let isVeggie = true;
+        this.ingredients.forEach((ingredient) => {
+            if (!ingredient.isVegetarian()) isVeggie = false;
+        })
+        return isVeggie;
+    }
+
+    isVegan() {
+        let isVeggie = true;
+        this.ingredients.forEach((ingredient) => {
+            if (!ingredient.isVegan()) isVeggie = false;
+        })
+        return isVeggie;
+    }
+
+    isFavourited() {
+        return false;
+    }
+
 }
 
-String.prototype.ordinate = function(){
+String.prototype.ordinate = function () {
     const n = Number(this);
     if (n >= 10 && n <= 20) return `${this}th`;
-    switch (n % 10){
+    switch (n % 10) {
         case 1: return `${this}st`;
         case 2: return `${this}nd`;
         case 3: return `${this}rd`;

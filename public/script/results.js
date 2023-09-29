@@ -1,19 +1,23 @@
 import { readDBKeys } from "./firebase.js";
+import { getIngredients } from "./ingredient.js";
 import { MenuItem } from "./menu-item.js";
 import { profile } from "./profile.js";
 
 export let results = [];
 let openCategory = 'All';
 
-const categoryPanel = document.getElementById('category-panel');
+const categoryPanel = document.getElementById('category-results');
 const resultsDiv = document.getElementById('results');
 
 export function getResults(){
-    readDBKeys(`menus/${profile.uid}/`, (keys) => {
-        keys.forEach((id) => {
-            const menuItem = new MenuItem(id);
-            if (results.filter((x) => x.id === id) < 1) results.push(menuItem);
-        });
+    getIngredients(() => {
+        readDBKeys(`menus/${profile.uid}/`, (keys) => {
+            keys.forEach((id) => {
+                const menuItem = new MenuItem(id);
+                if (results.filter((x) => x.id === id) < 1) results.push(menuItem);
+                menuItem.getData();
+            });
+        })
     })
 }
 
@@ -46,13 +50,12 @@ export function displayCategories(){
     let categories = {"All": [], "Visible": [], "Hidden": []};
     let buttons = {};
 
-    console.log(results)
-
     categoryPanel.innerHTML = '';
 
     results.forEach((result) => {
         if (!Object.keys(categories).includes(result.category)) categories[result.category] = [];
         categories["All"].push(result);
+        categories[result.hidden ? 'Hidden' : 'Visible'].push(result);
         categories[result.category].push(result);
     })
 

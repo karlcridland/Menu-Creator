@@ -21,19 +21,43 @@
     height: 40px;
 }
 
-#results>.thumbnail>h1{
+#results>.thumbnail>.text-section{
+    margin: 0 10px;
+    margin-top: 10px;
+}
+
+#results>.thumbnail>.text-section>h1{
     margin: unset;
     font-weight: 600;
     font-size: 1.2rem;
 }
 
+#results>.thumbnail>.text-section>h2{
+    margin: 5px 0;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+#results>.thumbnail>.text-section>h3{
+    margin: 5px 0;
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+
+button.thumbnail-symbol,
 button.thumbnail-settings{
     width: 40px;
     height: 40px;
     cursor: pointer;
 }
 
-img.thumbnail-settings{
+img.thumbnail-symbol,
+img.thumbnail-settings,
+img.date{
     height: 24px;
     width: 24px;
+}
+
+.buffer{
+    flex-grow: 1;
 }

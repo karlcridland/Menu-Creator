@@ -6,13 +6,14 @@ export var profile;
 
 export function setProfile(uid) {
     profile = new Profile(uid);
-    profile.setName('Karl', 'Cridland');
     getResults();
 
     // const item = new MenuItem(null);
-    // item.setTitles('Spaghetti Bolognese', 'Traditional Italian style.')
-    // item.setIngredients(['Spaghetti', 'Beef', 'Bolognese Sauce', 'Parmesan']);
-    // item.setCategory('Dinner');
+    // item.setTitles('Cheesy beans on toast', 'Classic English Breakfast.')
+    // item.setIngredients(['ING000204','ING000205', 'ING000071']);
+    // item.setCategory('Breakfast');
+
+    // document.getElementById('new-item').click();
 }
 
 export class Profile {
@@ -20,6 +21,7 @@ export class Profile {
     constructor(uid) {
         this.uid = uid;
         this.getInformation();
+        this.language = 'en';
     }
 
     getInformation() {
