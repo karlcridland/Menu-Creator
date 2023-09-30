@@ -37,9 +37,11 @@ function displayResults(res){
     }
 
     res.forEach((result) => {
-        const thumbnail = result.getThumbnail()
-        resultsDiv.appendChild(thumbnail);
-        thumbnails.push(thumbnail);
+        if (result.isReady()){
+            const thumbnail = result.getThumbnail()
+            resultsDiv.appendChild(thumbnail);
+            thumbnails.push(thumbnail);
+        }
     })
 
     adaptResultSizes();

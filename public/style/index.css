@@ -1,18 +1,28 @@
+@font-face {
+    font-family: 'Gabarito';
+    src: url(../resources/Gabarito-VariableFont_wght.ttf);
+}
+
 html, body{
     height: 100%;
     width: 100%;
     padding: 0;
     margin: 0;
     overflow: hidden;
-    font-family: sans-serif !important;
+    font-family: 'Gabarito', sans-serif !important;
 }
 
 textarea:focus, input:focus{
     outline: none;
 }
 
+body{
+    font-family: 'Gabarito', sans-serif !important;
+}
+
 button{
     color: #000;
+    font-family: 'Gabarito', sans-serif !important;
 }
 
 #editor{

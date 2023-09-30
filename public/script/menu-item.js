@@ -5,6 +5,8 @@ import { ingredients } from "./ingredient.js";
 import { profile } from "./profile.js";
 import { createElement, displayCategories, results } from "./results.js";
 import { months } from "./utilities.js";
+import "../script/helper.js";
+import { removeHelper } from "../script/helper.js";
 
 export class MenuItem {
 
@@ -20,20 +22,21 @@ export class MenuItem {
 
     isReady() {
         if (this.ready) return true;
-        this.titleReady = this.title;
-        this.categoryReady = this.category;
+        this.titleReady = this.title !== null && this.title !== undefined && this.title !== '';
+        this.categoryReady = this.category !== null && this.category !== undefined && this.category !== '';
         this.ingredientsReady = this.ingredients.length > 0;
         if (this.titleReady && this.categoryReady && this.ingredientsReady) {
             this.ready = true;
             return true;
         }
-
         return false;
     }
 
     display() {
-        if (results.filter((x) => x.id === this.id) < 1) results.push(this);
-        if (this.isReady()) displayCategories();
+        if (this.isReady()){
+            if (results.filter((x) => x.id === this.id) < 1) results.push(this);
+            displayCategories();
+        }
     }
 
     createID() {
@@ -61,9 +64,7 @@ export class MenuItem {
         });
     }
 
-    setTitles(title, subtitle) {
-        this.title = title;
-        this.subtitle = subtitle;
+    setTitles() {
         const uid = profile.uid;
         writeDB(`menus/${uid}/${this.id}/title`, this.title);
         writeDB(`menus/${uid}/${this.id}/subtitle`, this.subtitle);
@@ -82,9 +83,8 @@ export class MenuItem {
         });
     }
 
-    setCategory(category) {
+    setCategory() {
         const uid = profile.uid;
-        if (category) this.category = category;
         writeDB(`menus/${uid}/${this.id}/category`, this.category);
     }
 
@@ -108,7 +108,7 @@ export class MenuItem {
         const menuItem = this;
         const uid = profile.uid;
         readDB(`menus/${uid}/${this.id}/ingredients`, (ingr) => {
-            menuItem.ingredients = ingr.map(x => ingredients[x]) || [];
+            menuItem.ingredients = ingr ? ingr.map(x => ingredients[x]) : [];
             menuItem.display();
         });
     }
@@ -136,6 +136,8 @@ export class MenuItem {
                 const image = createElement(symbol, 'img', 'thumbnail-symbol');
                 image.src = `../resources/${id}.png`;
                 all_symbols.push(symbol);
+
+                symbol.help(id);
             }
         })
 
@@ -161,6 +163,7 @@ export class MenuItem {
         const subtitle = createElement(text, 'h2');
         const ingredients = createElement(text, 'h3');
 
+        settings.help('edit');
         settingsImage.src = './resources/settings.svg';
 
         title.textContent = this.title;
@@ -170,10 +173,11 @@ export class MenuItem {
         const ds = this.id.split(':');
         const timestamp = `${ds[3]}:${ds[4]} ${ds[2].ordinate()} ${months[Number(ds[1]) - 1]} ${ds[0]}`;
         dateImage.src = `../resources/sortbycreated.svg`;
-        date.title = timestamp;
+        date.help(timestamp);
 
-        settingsImage.addEventListener('click', () => {
-            editItem(menuItem);
+        settings.addEventListener('click', () => {
+            editItem(menuItem, true);
+            removeHelper();
         });
 
         // settingsImage.click();

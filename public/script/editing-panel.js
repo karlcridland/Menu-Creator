@@ -7,7 +7,7 @@ export const editor = document.getElementById('editor');
 export const panel = document.getElementById('editing-panel');
 export const searchBar = document.getElementById('search');
 
-['select', 'search', '', 'sort by created', 'sort by alphabet', '', 'new item', 'export'].forEach(function (id) {
+['select', 'search', '', 'sort by created', 'sort by alphabet', '', 'menu item', 'export'].forEach(function (id) {
     if (id === '') {
         panel.appendChild(document.createElement('div'));
     }
@@ -54,7 +54,7 @@ function groupButtons(buttons) {
 
 const select = allButtons['select'];
 const search = allButtons['search'];
-const newItem = allButtons['new item'];
+const newItem = allButtons['menu item'];
 
 function getButtonImage(id) {
     const image = document.createElement('img');

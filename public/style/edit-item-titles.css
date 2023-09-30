@@ -1,0 +1,22 @@
+.edit-item-text-title{
+    margin: 12px;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    letter-spacing: 0.05rem;
+    font-weight: 500;
+    padding-left: 4px;
+}
+
+.edit-item-text-input {
+    background-color: #ebebeb;
+    border-radius: 8px;
+    border: unset;
+    flex-grow: 1;
+    padding: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin: 12px;
+    width: -webkit-fill-available;
+    height: 26px;
+    margin-top: 4px;
+}

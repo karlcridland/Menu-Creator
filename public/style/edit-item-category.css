@@ -1,0 +1,96 @@
+#edit-item-category-display {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-item-category-choices {
+    margin: 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    max-height: 124px;
+    overflow: scroll;
+}
+
+.edit-item-category-settings>input,
+.edit-item-category-settings>button,
+.edit-item-category-choices{
+    background-color: #ebebeb;
+    border-radius: 8px;
+    border: unset;
+}
+
+.edit-item-category-choices>button {
+    text-align: left;
+    border: unset;
+    background-color: #fff6;
+    padding: 8px;
+    font-size: 0.75rem;
+    position: relative;
+    border-radius: 0;
+}
+
+.edit-item-category-choices>button::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff6;
+    z-index: -1;
+}
+
+.edit-item-category-choices>button.alternating {
+    background-color: #fff;
+}
+
+.edit-item-category-choices>button.alternating::after{
+    background-color: #fff;
+}
+
+.edit-item-category-choices>button.selected {
+    background-color: #0062ff;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.edit-item-category-settings {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    width: -webkit-fill-available;
+    margin: 12px;
+    margin-top: 0;
+}
+
+.edit-item-category-settings>input{
+    flex-grow: 1;
+    padding: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.edit-item-category-settings>button{
+    width: 40px;
+    margin-left: 12px;
+    transition: ease 300ms padding, ease 300ms width, ease 300ms margin;
+    cursor: pointer;
+}
+
+.edit-item-category-settings>button.hidden{
+    margin-left: 0;
+    margin-right: 0;
+    width: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.edit-item-category-settings>button>img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

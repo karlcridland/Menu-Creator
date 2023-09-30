@@ -13,3 +13,12 @@ export const flags = {
     'ru': '🇷🇺',
     'zh': '🇨🇳',
 }
+
+String.prototype.shorthand = function(){
+    const original = this;
+    console.log(original);
+    switch (original){
+        case 'grams': return 'g';
+        default: return original;
+    }
+}

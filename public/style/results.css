@@ -2,7 +2,6 @@
     background-color: #fff;
     margin: 10px;
     padding: 10px;
-    font-family: sans-serif;
     height: fit-content;
     box-shadow: 0 2px 12px -5px #00000038;
     max-width: 400px;
@@ -48,6 +47,9 @@ button.thumbnail-symbol,
 button.thumbnail-settings{
     width: 40px;
     height: 40px;
+}
+
+button.thumbnail-settings{
     cursor: pointer;
 }
 
