@@ -12,19 +12,25 @@
   <link href="./style/edit-item.css" rel="stylesheet">
   <link href="./style/edit-item-category.css" rel="stylesheet">
   <link href="./style/edit-item-titles.css" rel="stylesheet">
+  <link href="./style/edit-item-ingredients.css" rel="stylesheet">
   <link href="./style/helper.css" rel="stylesheet">
+  <link href="./style/suggestion.css" rel="stylesheet">
 
 </head>
 
 <body>
   <div id="helper"></div>
+  <div id="suggestion">
+    <button id="suggest-left"><img src="./resources/chevron-left.svg"></button>
+    <button id="current-suggestion">placeholder</button>
+    <button id="suggest-right"><img src="./resources/chevron-right.svg"></button>
+  </div>
   <div id="editor">
     <div id="editing-panel"></div>
     <input id="search" placeholder="Search" class="not-searching">
     <div id="results-panel">
       <div id="category-panel">
         <div id="category-results"></div>
-        <!-- <div id="category-settings"><button id="new-category"><img src="./resources/plus.svg"></button></div> -->
       </div>
       <div id="results"></div>
     </div>

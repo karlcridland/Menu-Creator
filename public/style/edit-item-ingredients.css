@@ -1,0 +1,66 @@
+#edit-item-ingredients-display {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.edit-item-ingredient-results {
+    background-color: #ebebeb;
+    border-radius: 8px;
+    width: -webkit-fill-available;
+    flex-grow: 1;
+    margin: 12px;
+    padding: 5px;
+    display: block;
+}
+
+.edit-item-new-ingredient {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    min-width: fit-content;
+    max-width: -webkit-fill-available;
+    float: left;
+    margin: 5px;
+
+}
+
+.edit-item-new-ingredient>input {
+    border: unset;
+    font-size: 0.9rem;
+    width: fit-content;
+}
+
+.edit-item-ingredient {
+    background-color: #0062ff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 5px;
+    width: fit-content;
+    float: left;
+    padding-right: 40px;
+    display: block;
+    position: relative;
+    cursor: pointer !important;
+}
+
+.edit-item-ingredient::after {
+    content: '';
+    right: 0;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    background-image: url(../resources/delete-ingredient.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 10px;
+    opacity: 0;
+    transition: ease opacity 500ms;
+}
+
+.edit-item-ingredient:hover::after{
+    opacity: 1;
+}

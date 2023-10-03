@@ -5,8 +5,8 @@ import { ingredients } from "./ingredient.js";
 import { profile } from "./profile.js";
 import { createElement, displayCategories, results } from "./results.js";
 import { months } from "./utilities.js";
-import "../script/helper.js";
 import { removeHelper } from "../script/helper.js";
+import { removeSuggestion } from "../script/suggestion.js";
 
 export class MenuItem {
 
@@ -180,7 +180,7 @@ export class MenuItem {
             removeHelper();
         });
 
-        // settingsImage.click();
+        settings.click();
 
         return thumbnail;
     }

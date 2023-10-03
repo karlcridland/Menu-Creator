@@ -7,7 +7,13 @@ export class EditItem{
     }
 
     autosave(){
-        
+
+    }
+    
+    markCompleted(isCompleted){
+        const self = this;
+        if (isCompleted) self.headerButton.classList.add('completed');
+        else self.headerButton.classList.remove('completed');
     }
 
 }

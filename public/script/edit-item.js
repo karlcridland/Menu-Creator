@@ -1,5 +1,6 @@
 import { EditItemCategory } from "./edit-item/EditItemCategory.js";
 import { EditItemTitles } from "./edit-item/EditItemTitles.js";
+import { EditItemIngredients } from "./edit-item/EditItemIngredients.js";
 import { editor } from "./editing-panel.js";
 import { MenuItem } from "./menu-item.js";
 import { createElement } from "./results.js";
@@ -17,11 +18,12 @@ const hidden = document.getElementById('edit-item-hidden');
 const eyeball = document.getElementById('eyeball');
 const favourite = document.getElementById('edit-item-favourite');
 const remove = document.getElementById('edit-item-delete');
+const close = document.getElementById('edit-item-close');
 
 camera.help('update picture');
 favourite.help('favourite');
 remove.help('remove');
-
+close.help('close');
 
 const headers = ['category', 'titles', 'ingredients', 'customise', 'nutrition', 'allergens'];
 const headersDiv = document.getElementById('edit-item-toolbar');
@@ -63,12 +65,8 @@ editContainer.onclick = closeEditItem;
 editItemClose.onclick = closeEditItem;
 
 function markCompleted(target, isCompleted){
-    if (isCompleted){
-        headerButtons[target].classList.add('completed');
-    }
-    else{
-        headerButtons[target].classList.remove('completed');
-    }
+    if (isCompleted) headerButtons[target].classList.add('completed');
+    else headerButtons[target].classList.remove('completed');
 }
 
 function blink(item){
@@ -84,8 +82,8 @@ export function editItem(target, autosave){
 
     const item = target || new MenuItem(undefined);
     title.textContent = item.title;
-    markCompleted('category', item.category !== null);
-    markCompleted('titles', item.title !== null);
+    markCompleted('category', item.category !== null && item.category !== undefined && item.category !== '');
+    markCompleted('titles', item.title !== null && item.title !== undefined && item.title !== '');
     markCompleted('ingredients', item.ingredients.length > 0);
     
     hidden.onclick = function(){
@@ -102,12 +100,14 @@ export function editItem(target, autosave){
             if (!displays[id]) displays[id] = editItem.display;
             footerDiv.innerHTML = '';
             footerDiv.appendChild(displays[id]);
+            editItem.headerButton = headerButtons[id];
         }
     }
 
     openSection('category', new EditItemCategory(item, autosave));
     openSection('titles', new EditItemTitles(item, autosave));
+    openSection('ingredients', new EditItemIngredients(item, autosave));
 
-    headerButtons['category'].click();
+    headerButtons['ingredients'].click();
 
 }

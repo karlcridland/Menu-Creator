@@ -28,8 +28,10 @@ export class EditItemTitles extends EditItem {
         inputs['subtitle'].value = target.subtitle || '';
 
         inputs['title'].addEventListener('keyup', () => {
-            title.textContent = inputs['title'].value;
-            target.title = inputs['title'].value;
+            const val = inputs['title'].value;
+            title.textContent = val;
+            target.title = val;
+            self.markCompleted(val.length > 0);
             self.autosave();
         })
 

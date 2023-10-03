@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
-import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+import { getDatabase, ref, onValue, set, get, child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 import { Profile, profile, setProfile } from "./profile.js";
 
@@ -26,7 +26,15 @@ export function readDB(path, callback) {
     });
 }
 
-export function readDBKeys(path, callback){
+export function readOnceDB(path, callback) {
+    onValue(ref(database, path), (snapshot) => {
+        callback(snapshot.val() || {});
+    }, {
+        onlyOnce: true
+    });
+}
+
+export function readDBKeys(path, callback) {
     onValue(ref(database, path), (snapshot) => {
         if (snapshot.exists()) {
             callback(Object.keys(snapshot.val()));

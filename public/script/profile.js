@@ -1,4 +1,6 @@
+import { getSearchBonus } from "./edit-item/EditItemIngredients.js";
 import { writeDB } from "./firebase.js";
+import { setSearchBonus } from "./ingredient.js";
 import { MenuItem } from "./menu-item.js";
 import { getResults } from "./results.js";
 
@@ -7,6 +9,7 @@ export var profile;
 export function setProfile(uid) {
     profile = new Profile(uid);
     getResults();
+    setSearchBonus();
 
     // const item = new MenuItem(null);
     // item.setTitles('Cheesy beans on toast', 'Classic English Breakfast.')
@@ -14,6 +17,7 @@ export function setProfile(uid) {
     // item.setCategory('Breakfast');
 
     // document.getElementById('new-item').click();
+
 }
 
 export class Profile {

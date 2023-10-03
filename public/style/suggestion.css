@@ -1,0 +1,45 @@
+#suggestion {
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+    border: solid 3px rgb(231, 231, 231);
+    border-radius: 8px;
+    display: none;
+    flex-direction: row;
+    height: 30px;
+}
+
+#current-suggestion {
+    line-height: 30px;
+    font-size: 1rem;
+    margin: auto;
+    padding: 0 8px !important;
+    min-width: 80px;
+}
+
+#suggestion>button {
+    padding: 0;
+    border: unset;
+    background-color: unset;
+    cursor: pointer;
+    transition: ease background-color 300ms;
+}
+
+#suggestion>button>img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    transform: scale(0.8);
+}
+
+#suggestion>button:hover{
+    background-color: #e0e0e07e;
+}
+
+#suggestion>button.disable{
+    pointer-events: none;
+    opacity: 0.4 !important;
+    cursor: default !important;
+}

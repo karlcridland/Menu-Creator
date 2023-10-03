@@ -21,6 +21,21 @@
     background-color: #ebebeb;
     border-radius: 8px;
     border: unset;
+    position: relative;
+}
+
+.edit-item-category-no-choices::after{
+    content: 'No categories found.';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: #0008;
+    display: none;
 }
 
 .edit-item-category-choices>button {

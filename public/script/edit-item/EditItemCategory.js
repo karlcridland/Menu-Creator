@@ -36,6 +36,7 @@ export class EditItemCategory extends EditItem {
             input.value = '';
             self.displayCategories();
             self.autosave();
+            self.markCompleted(true);
         })
 
     }
@@ -58,8 +59,12 @@ export class EditItemCategory extends EditItem {
                 option.classList.add('selected');
                 self.target.category = category;
                 self.autosave();
+                self.markCompleted(true);
             }
         })
+        if (this.allCategories.length === 0){
+            this.choices.classList.add('edit-item-category-no-choices');
+        }
     }
 
     autosave(){
