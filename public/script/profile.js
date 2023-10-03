@@ -1,4 +1,3 @@
-import { getSearchBonus } from "./edit-item/EditItemIngredients.js";
 import { writeDB } from "./firebase.js";
 import { setSearchBonus } from "./ingredient.js";
 import { MenuItem } from "./menu-item.js";

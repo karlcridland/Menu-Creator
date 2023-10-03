@@ -1,7 +1,10 @@
+import { readDB } from "./firebase.js";
+
 export class SearchBonus{
 
     constructor(){
         this.results = {};
+        this.getResults();
     }
 
     getResults(){
