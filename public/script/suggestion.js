@@ -24,7 +24,7 @@ class Suggestion {
 
     setText(input) {
         try{
-            const value = ingredients[input].name;
+            const value = ingredients[input].name.toLowerCase();
             this.action.textContent = value;
         }
         catch(e){
@@ -70,7 +70,9 @@ class Suggestion {
             self.left.style.display = 'block';
             self.right.style.display = 'block';
             self.setText(self.suggestions[self.currentSuggestion]);
-            console.log(this.currentSuggestion);
+
+            self.left.classList.remove('disable');
+            self.right.classList.remove('disable');
 
             switch (this.currentSuggestion) {
                 case 0:

@@ -31,7 +31,6 @@ export class Ingredient {
         let results = [];
         results.push(this.name);
         this.tags.map(x => results.push(x));
-        // this.locales.map(x => results.push(x));
         return results;
     }
 

@@ -83,7 +83,7 @@
 .edit-item-ingredient:hover {
     transform: translate(-10px);
     z-index: 100;
-    box-shadow: -2px 0px 0px 0px #ffffffcd;
+    box-shadow: -2px 0px 3px 0px #ebebebb3;
     background-color: #ce271e;
 }
 
@@ -100,7 +100,7 @@
 }
 
 .edit-item-ingredient:hover::after {
-    box-shadow: 2px 0px 0px 0px #ffffffcd;
+    box-shadow: 2px 0px 3px 0px #ebebebb3;
 }
 
 #edit-item-ingredient-settings {

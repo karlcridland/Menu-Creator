@@ -112,19 +112,12 @@ export class EditItemIngredients extends EditItem {
         return s;
     }
 
-    // createNewIngredient() {
-    //     const display = createElement(this.display, 'div', 'edit-item-new-ingredient');
-    //     this.input = createElement(display, 'input');
-    //     this.input.setAttribute('placeholder', 'New ingredient');
-    //     return display;
-    // }
-
     displayIngredients() {
         const self = this;
         self.results.innerHTML = '';
         self.target.ingredients.forEach((ingredient) => {
-            const block = createElement(self.results, 'div', 'edit-item-ingredient', `ingredient-${ingredient}`);
-            block.textContent = ingredient.name;
+            const block = createElement(self.results, 'div', 'edit-item-ingredient', `ingredient-${ingredient.id}`);
+            block.textContent = ingredient.name.toLowerCase();
             block.onclick = function () {
                 const index = self.target.ingredients.map(x => x.id).indexOf(ingredient.id);
                 self.target.ingredients.splice(index, 1);
@@ -132,7 +125,6 @@ export class EditItemIngredients extends EditItem {
                 self.removeSuggestion();
             }
         });
-        // self.results.appendChild(self.newIngredient());
     }
 
     autosave(){
@@ -141,6 +133,7 @@ export class EditItemIngredients extends EditItem {
         if (self.shouldAutosave){
             self.target.setIngredients();
         }
+        self.input.focus();
     }
 
 }
