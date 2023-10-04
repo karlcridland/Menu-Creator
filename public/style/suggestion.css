@@ -1,22 +1,36 @@
 #suggestion {
-    position: absolute;
-    z-index: 1000;
     left: 0;
     top: 0;
     background-color: #fff;
-    border: solid 3px rgb(231, 231, 231);
     border-radius: 8px;
-    display: none;
+    display: flex;
     flex-direction: row;
-    height: 30px;
+    height: 40px;
+}
+
+#suggestion>* {
+    background-color: #ebebeb !important;
+    border-radius: 8px;
+    border: unset;
+    position: relative;
+    padding: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    flex-grow: 1;
+    transition: ease flex-grow 300ms;
 }
 
 #current-suggestion {
-    line-height: 30px;
+    line-height: 40px;
     font-size: 1rem;
     margin: auto;
     padding: 0 8px !important;
     min-width: 80px;
+    margin-left: 12px;
+    margin-right: 12px;
+    flex-grow: 1;
+    white-space: nowrap !important;
+    width: fit-content !important;
 }
 
 #suggestion>button {
@@ -25,6 +39,8 @@
     background-color: unset;
     cursor: pointer;
     transition: ease background-color 300ms;
+    width: 40px;
+    margin: unset;
 }
 
 #suggestion>button>img {
@@ -34,12 +50,22 @@
     transform: scale(0.8);
 }
 
-#suggestion>button:hover{
+#suggestion>button:hover {
     background-color: #e0e0e07e;
 }
 
-#suggestion>button.disable{
+#suggestion>button.disable {
     pointer-events: none;
     opacity: 0.4 !important;
     cursor: default !important;
+}
+
+#suggest-left{
+    margin-right: 12px !important;
+    max-width: 40px;
+}
+
+#suggest-right{
+    margin-left: 12px !important;
+    max-width: 40px;
 }

@@ -7,26 +7,39 @@ import { EditItem } from "./EditItem.js";
 
 export class EditItemIngredients extends EditItem {
 
-    constructor(target) {
-        super(target);
+    constructor(target, autosave) {
+        super(target, autosave);
         const self = this;
         this.display.setAttribute('id', 'edit-item-ingredients-display')
         this.results = createElement(this.display, 'div', 'edit-item-ingredient-results');
+        this.settings = createElement(this.display, 'div', null, 'edit-item-ingredient-settings');
+        this.input = createElement(this.settings, 'input', null, 'edit-item-ingredient-input');
+        this.suggestion = createElement(this.settings, 'button', null, 'edit-item-ingredients-suggestion');
+        this.help = createElement(this.settings, 'button', null, 'edit-item-ingredients-help');
         self.displayIngredients();
         self.path = [];
+
+        this.input.setAttribute('placeholder', 'new ingredient');
+
+        const helpIcon = createElement(this.help, 'img');
+        helpIcon.src = `../../resources/help.svg`;
+        this.help.help('Can\'t see an ingredient?');
+
+        this.newIngredient();
+
     }
 
     newIngredient() {
         const self = this;
-        const display = this.createNewIngredient();
+
+        let suggestion;
+        let mouseover = false;
+
+        suggestion = self.promptSuggestion();
+        this.suggestion.appendChild(suggestion.display);
 
         this.input.addEventListener('focus', () => {
-
-            let suggestion;
-            let mouseover = false;
-
-            console.log('focussed');
-            suggestion = self.promptSuggestion();
+            
             suggestion.display.onmouseover = function () {
                 mouseover = true;
             }
@@ -51,9 +64,10 @@ export class EditItemIngredients extends EditItem {
                 suggestion = self.promptSuggestion();
                 if (e.key === 'Enter' || e.keyCode === 13) suggestion.action.click();
             });
+
         });
 
-        return display;
+        return this.input;
     }
 
     selectIngredient(suggestion) {
@@ -69,9 +83,16 @@ export class EditItemIngredients extends EditItem {
         })
         self.target.ingredients.push(ingredients[currentSuggestion]);
         self.displayIngredients();
+        self.removeSuggestion();
+        self.autosave();
+    }
+
+    removeSuggestion() {
+        const self = this;
         self.input.value = '';
         self.input.blur();
         removeSuggestion();
+        self.autosave();
     }
 
     updatePath() {
@@ -84,18 +105,19 @@ export class EditItemIngredients extends EditItem {
     promptSuggestion() {
         const self = this;
         const results = sortByValue(ingredientMatch(self.input.value));
+
         const currentKeys = self.target.ingredients.map(x => x.id);
         const names = Object.keys(results).filter(x => !currentKeys.includes(x));
         let s = self.input.suggest(names);
         return s;
     }
 
-    createNewIngredient() {
-        const display = createElement(this.display, 'div', 'edit-item-new-ingredient');
-        this.input = createElement(display, 'input');
-        this.input.setAttribute('placeholder', 'New ingredient');
-        return display;
-    }
+    // createNewIngredient() {
+    //     const display = createElement(this.display, 'div', 'edit-item-new-ingredient');
+    //     this.input = createElement(display, 'input');
+    //     this.input.setAttribute('placeholder', 'New ingredient');
+    //     return display;
+    // }
 
     displayIngredients() {
         const self = this;
@@ -103,8 +125,22 @@ export class EditItemIngredients extends EditItem {
         self.target.ingredients.forEach((ingredient) => {
             const block = createElement(self.results, 'div', 'edit-item-ingredient', `ingredient-${ingredient}`);
             block.textContent = ingredient.name;
+            block.onclick = function () {
+                const index = self.target.ingredients.map(x => x.id).indexOf(ingredient.id);
+                self.target.ingredients.splice(index, 1);
+                self.displayIngredients();
+                self.removeSuggestion();
+            }
         });
-        self.results.appendChild(self.newIngredient());
+        // self.results.appendChild(self.newIngredient());
+    }
+
+    autosave(){
+        super.autosave();
+        const self = this;
+        if (self.shouldAutosave){
+            self.target.setIngredients();
+        }
     }
 
 }

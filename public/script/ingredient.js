@@ -90,10 +90,13 @@ export function getIngredient(name){
 }
 
 export function ingredientMatch(text){
+    const bonus = searchBonus.results[text];
     let results = {};
     Object.entries(ingredients).forEach(([key, ingredient]) => {
-        const score = ingredient.textMatch(text);
+        const textMatch = ingredient.textMatch(text);
+        const score = bonus ? textMatch + bonus[key] : textMatch;
         if (score > 0.1) results[key] = score;
     })
+    console.log(results);
     return results;
 }

@@ -15,6 +15,16 @@
     overflow: scroll;
 }
 
+#edit-item-category {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-grow: 1;
+    border-radius: 6px;
+    font-size: 0.9rem !important;
+}
+
 .edit-item-category-settings>input,
 .edit-item-category-settings>button,
 .edit-item-category-choices{
@@ -108,4 +118,9 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.edit-item-category-settings>input {
+    padding: 8px 12px !important;
+    font-size: 0.9rem;
 }

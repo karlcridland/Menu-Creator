@@ -169,14 +169,6 @@
     color: rgb(241, 55, 55);
 }
 
-#edit-item-category {
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex-grow: 1;
-}
-
 #edit-item {
     padding: 0;
 }

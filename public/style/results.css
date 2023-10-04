@@ -1,4 +1,4 @@
-#results>.thumbnail{
+#results>.thumbnail {
     background-color: #fff;
     margin: 10px;
     padding: 10px;
@@ -8,58 +8,62 @@
     min-width: 300px;
 }
 
-#results>.thumbnail>.header{
+#results>.thumbnail>.header {
     display: flex;
     flex-direction: row;
+    padding: 0 4px;
 }
 
-#results>.thumbnail>.header>button{
+#results>.thumbnail>.header>button {
     background-color: unset;
     border: unset;
-    width: 40px;
+    width: 32px;
     height: 40px;
+    padding: unset;
 }
 
-#results>.thumbnail>.text-section{
+#results>.thumbnail>.text-section {
     margin: 0 10px;
     margin-top: 10px;
 }
 
-#results>.thumbnail>.text-section>h1{
+#results>.thumbnail>.text-section>h1 {
     margin: unset;
     font-weight: 600;
     font-size: 1.2rem;
 }
 
-#results>.thumbnail>.text-section>h2{
+#results>.thumbnail>.text-section>h2 {
     margin: 5px 0;
     font-weight: 500;
     font-size: 1.1rem;
 }
 
-#results>.thumbnail>.text-section>h3{
+#results>.thumbnail>.text-section>h3 {
     margin: 5px 0;
     font-weight: 300;
     font-size: 0.9rem;
 }
 
 button.thumbnail-symbol,
-button.thumbnail-settings{
+button.thumbnail-settings {
     width: 40px;
     height: 40px;
 }
 
-button.thumbnail-settings{
+button.thumbnail-settings {
     cursor: pointer;
 }
 
 img.thumbnail-symbol,
 img.thumbnail-settings,
-img.date{
+img.date {
     height: 24px;
     width: 24px;
+    margin: auto;
+    padding: unset;
 }
 
-.buffer{
+.buffer {
     flex-grow: 1;
 }

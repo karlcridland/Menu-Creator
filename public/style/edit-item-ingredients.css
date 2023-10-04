@@ -34,33 +34,119 @@
 .edit-item-ingredient {
     background-color: #0062ff;
     color: #fff;
-    padding: 10px;
+    padding: 6px 12px;
     border-radius: 4px;
     margin: 5px;
     width: fit-content;
     float: left;
-    padding-right: 40px;
+    /* padding-right: 40px; */
     display: block;
     position: relative;
     cursor: pointer !important;
+    transition: ease transform 300ms, ease background-color 300ms;
 }
 
+.edit-item-ingredient::before,
 .edit-item-ingredient::after {
     content: '';
     right: 0;
-    width: 20px;
-    height: 20px;
-    top: 0;
-    background-image: url(../resources/delete-ingredient.svg);
+    width: 21px;
+    height: 21px;
+    top: -10px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
     margin: 10px;
-    opacity: 0;
-    transition: ease opacity 500ms;
+    background-color: #0062ff;
+    border-radius: 4px;
+    z-index: 10;
+    box-shadow: -2px 0px 0px 0px #fff0;
 }
 
-.edit-item-ingredient:hover::after{
+.edit-item-ingredient::before {
+    background-image: url(../resources/delete-ingredient.svg);
+    right: 5px;
+    top: -5px;
+    z-index: -1;
+    opacity: 0;
+    transition: ease opacity 100ms, ease transform 100ms, ease background-color 300ms;
+}
+
+.edit-item-ingredient::after {
+    padding: 6px;
+    height: 19px;
+    z-index: -1;
+    transition: ease opacity 500ms, ease transform 300ms, ease background-color 300ms;
+}
+
+.edit-item-ingredient:hover {
+    transform: translate(-10px);
+    z-index: 100;
+    box-shadow: -2px 0px 0px 0px #ffffffcd;
+    background-color: #ce271e;
+}
+
+.edit-item-ingredient:hover::before,
+.edit-item-ingredient:hover::after {
+    transform: translateX(30px);
+    background-color: #ce271e;
+}
+
+.edit-item-ingredient:hover::before {
+    transition: ease opacity 100ms, ease transform 300ms, ease background-color 300ms;
+    z-index: 2;
     opacity: 1;
+}
+
+.edit-item-ingredient:hover::after {
+    box-shadow: 2px 0px 0px 0px #ffffffcd;
+}
+
+#edit-item-ingredient-settings {
+    margin: 12px;
+    margin-top: 0;
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: revert;
+    height: 40px;
+}
+
+#edit-item-ingredient-settings>* {
+    background-color: #ebebeb;
+    border-radius: 8px;
+    border: unset;
+    position: relative;
+    font-size: 0.75rem;
+    font-weight: 500;
+    flex-grow: 1;
+    padding: 8px;
+    transition: ease flex-grow 300ms;
+}
+
+#edit-item-ingredients-suggestion {
+    padding: 0 !important;
+}
+
+#edit-item-ingredients-help {
+    width: 40px;
+    max-width: 40px;
+    margin-left: 12px;
+    cursor: pointer;
+}
+
+#edit-item-ingredients-suggestion {
+    margin-left: 12px;
+    background-color: unset;
+}
+
+#edit-item-ingredients-help>img {
+    height: 24px;
+    width: 24px;
+}
+
+#edit-item-ingredient-input {
+    padding: 8px 12px !important;
+    font-size: 0.9rem;
+    width: 30px;
 }

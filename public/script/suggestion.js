@@ -66,24 +66,31 @@ class Suggestion {
     updateButtons() {
         const self = this;
         if (self.suggestions.length > 0) {
+            console.log('Has suggestions.');
             self.left.style.display = 'block';
             self.right.style.display = 'block';
             self.setText(self.suggestions[self.currentSuggestion]);
+            console.log(this.currentSuggestion);
+
             switch (this.currentSuggestion) {
                 case 0:
+                    console.log('a');
                     self.left.classList.add('disable');
                     if (self.suggestions.length === 1) self.right.classList.add('disable');
                     break;
                 case (self.suggestions.length - 1):
+                    console.log('b');
                     self.right.classList.add('disable');
                     break;
                 default:
+                    console.log('c');
                     self.left.classList.remove('disable');
                     self.right.classList.remove('disable');
                     return;
             }
         }
         else {
+            console.log('No suggestions.');
             self.left.style.display = 'none';
             self.right.style.display = 'none';
             self.setText('No suggestions.');
@@ -97,13 +104,10 @@ const suggestion = new Suggestion();
 HTMLElement.prototype.suggest = function (suggestions) {
     const self = this;
     suggestion.setSuggestions(suggestions);
-    setTimeout(() => {
-        suggestion.reposition(self);
-        suggestion.display.style.display = 'flex';
-    }, 200);
+    suggestion.display.style.display = 'flex';
     return suggestion;
 }
 
 export function removeSuggestion() {
-    suggestion.display.style.display = 'none';
+    // suggestion.display.style.display = 'none';
 }

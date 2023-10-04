@@ -13,9 +13,10 @@ export class SearchBonus{
         readDB('search/ingredients', (users) => {
             Object.values(users).forEach((results) => {
                 Object.entries(results).forEach(([key, ings]) => {
-                    self.results[key] = {};
+                    if (!self.results[key]) self.results[key] = {};
                     Object.entries(ings).forEach(([ing, value]) => {
-                        self.results[key][ing] = value;
+                        if (!self.results[key][ing]) self.results[key][ing] = 0;
+                        self.results[key][ing] += value;
                         if (value > self.max) self.max = value;
                     });
                 });
@@ -35,6 +36,10 @@ export class SearchBonus{
             temp[key] = result;
         })
         self.results = temp;
+    }
+
+    result(chars){
+
     }
 
 }

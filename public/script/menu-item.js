@@ -98,10 +98,9 @@ export class MenuItem {
         });
     }
 
-    setIngredients(ingredients, callback) {
+    setIngredients() {
         const uid = profile.uid;
-        if (ingredients) this.ingredients = ingredients;
-        writeDB(`menus/${uid}/${this.id}/ingredients`, this.ingredients);
+        writeDB(`menus/${uid}/${this.id}/ingredients`, this.ingredients.map(x => x.id));
     }
 
     getIngredients() {
