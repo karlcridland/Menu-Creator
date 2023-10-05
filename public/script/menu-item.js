@@ -1,6 +1,6 @@
 import { updateCategories } from "./categories.js";
 import { editItem } from "./edit-item.js";
-import { readDB, writeDB } from "./firebase.js";
+import { readDB, readOnceDB, writeDB } from "./firebase.js";
 import { ingredients } from "./ingredient.js";
 import { profile } from "./profile.js";
 import { createElement, displayCategories, results } from "./results.js";
@@ -13,6 +13,8 @@ export class MenuItem {
     constructor(id) {
         this.id = id || this.createID();
         this.ingredients = [];
+        this.allergens = [];
+        this.macros = {};
         this.hidden = true;
 
         this.titleReady = false;
@@ -98,6 +100,37 @@ export class MenuItem {
         });
     }
 
+    setAllergens() {
+        const uid = profile.uid;
+        writeDB(`menus/${uid}/${this.id}/allergens`, this.allergens);
+    }
+
+    getAllergens() {
+        const menuItem = this;
+        const uid = profile.uid;
+        readDB(`menus/${uid}/${this.id}/allergens`, (allergens) => {
+            menuItem.allergens = allergens;
+            menuItem.display();
+        });
+    }
+
+    setNutrition() {
+        console.log(this.macros)
+        const uid = profile.uid;
+        writeDB(`menus/${uid}/${this.id}/macros`, this.macros);
+    }
+
+    getNutrition() {
+        const menuItem = this;
+        const uid = profile.uid;
+        let n = 0;
+        readOnceDB(`menus/${uid}/${this.id}/macros`, (macros) => {
+            menuItem.macros = macros;
+            menuItem.display();
+            console.log("booooo")
+        });
+    }
+
     setIngredients() {
         const uid = profile.uid;
         writeDB(`menus/${uid}/${this.id}/ingredients`, this.ingredients.map(x => x.id));
@@ -116,7 +149,18 @@ export class MenuItem {
         this.getTitles();
         this.getCategory();
         this.getIngredients();
+        this.getNutrition();
+        this.getAllergens();
         this.getHidden();
+    }
+
+    save(){
+        this.setTitles();
+        this.setCategory();
+        this.setIngredients();
+        this.setNutrition();
+        this.setAllergens();
+        this.setHidden();
     }
 
     symbols() {
@@ -179,7 +223,7 @@ export class MenuItem {
             removeHelper();
         });
 
-        settings.click();
+        // settings.click();
 
         return thumbnail;
     }

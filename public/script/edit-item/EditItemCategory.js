@@ -4,7 +4,9 @@ import { EditItem } from "./EditItem.js";
 export class EditItemCategory extends EditItem {
 
     constructor(target, autosave) {
+        
         super(target, autosave);
+
         const self = this;
         this.display.setAttribute('id', 'edit-item-category-display')
         this.allCategories = [...new Set(results.map(x => x.category))].sort();

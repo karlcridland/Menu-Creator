@@ -232,7 +232,6 @@
 }
 
 #edit-item-toolbar>button>div {
-    padding-right: 10px;
     margin: auto;
     color: #fff;
 }
@@ -246,6 +245,7 @@
     opacity: 0.2;
     display: block;
     position: relative;
+    margin-left: 10px;
 }
 
 
@@ -341,4 +341,11 @@
 .edit-item-button:hover {
     opacity: 1 !important;
     filter: drop-shadow(0 0 5px #000) !important;
+}
+
+.grey-area{
+    background-color: #ebebeb;
+    border-radius: 8px;
+    border: unset;
+    position: relative;
 }

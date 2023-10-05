@@ -30,7 +30,7 @@ export function readOnceDB(path, callback) {
     onValue(ref(database, path), (snapshot) => {
         callback(snapshot.val() || {});
     }, {
-        onlyOnce: true
+        once: true
     });
 }
 
@@ -66,22 +66,22 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// writeDB('ingredients/ING000203', {
+// writeDB('ingredients/ING000213', {
+//     "allergens": ["crustaceans"],
 //     "locales": {
-//         "en": "eggs",
-//         "es": "huevos",
-//         "fr": "œufs",
-//         "pl": "jajka",
-//         "pt": "ovos",
-//         "zh": "鸡蛋",
-//         "el": "αυγά",
-//         "ru": "яйца",
-//         "jp": "卵",
-//         "it": "uova",
-//         "hu": "tojás",
-//         "de": "Eier"
+//       "de": "Hummer",
+//       "el": "αστακός",
+//       "en": "lobster",
+//       "es": "langosta",
+//       "fr": "homard",
+//       "hu": "homár",
+//       "it": "astice",
+//       "jp": "ロブスター",
+//       "pl": "homar",
+//       "pt": "lagosta",
+//       "ru": "омар",
+//       "zh": "龙虾"
 //     },
-//     "name": "eggs",
-//     "tags": ["dairy"]
-
+//     "name": "lobster",
+//     "tags": ["seafood", "ingredient"]
 // });

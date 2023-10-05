@@ -5,6 +5,8 @@ import { editor } from "./editing-panel.js";
 import { MenuItem } from "./menu-item.js";
 import { createElement } from "./results.js";
 import "../script/helper.js";
+import { EditItemAllergens } from "./edit-item/EditItemAllergens.js";
+import { EditItemNutrition } from "./edit-item/EditItemNutrition.js";
 
 export const editItemDiv = document.getElementById('edit-item');
 export const editContainer = document.getElementById('edit-item-container');
@@ -25,14 +27,23 @@ favourite.help('favourite');
 remove.help('remove');
 close.help('close');
 
-const headers = ['category', 'titles', 'ingredients', 'customise', 'nutrition', 'allergens'];
+const headers = {
+    'category': true, 
+    'titles': true, 
+    'ingredients': true, 
+    // 'customise': false, 
+    'nutrition': false, 
+    'allergens': false, 
+    // 'price': false
+};
+
 const headersDiv = document.getElementById('edit-item-toolbar');
 const headerButtons = {};
 
-headers.forEach((header) => {
+Object.entries(headers).forEach(([header, necessary]) => {
     const button = document.createElement('button');
     headerButtons[header] = button;
-    button.innerHTML = `<div>${header}</div><span></span>`;
+    button.innerHTML = `<div>${header}</div>${necessary ? '<span></span>' : ''}`;
     headersDiv.appendChild(button);
 
     button.addEventListener('click', () => {
@@ -101,13 +112,16 @@ export function editItem(target, autosave){
             footerDiv.innerHTML = '';
             footerDiv.appendChild(displays[id]);
             editItem.headerButton = headerButtons[id];
+            editItem.stylesheet(id);
         }
     }
 
     openSection('category', new EditItemCategory(item, autosave));
     openSection('titles', new EditItemTitles(item, autosave));
     openSection('ingredients', new EditItemIngredients(item, autosave));
+    openSection('nutrition', new EditItemNutrition(item, autosave));
+    openSection('allergens', new EditItemAllergens(item, autosave));
 
-    headerButtons['ingredients'].click();
+    headerButtons['nutrition'].click();
 
 }

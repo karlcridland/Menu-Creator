@@ -6,7 +6,9 @@ const title = document.getElementById('edit-item-title');
 export class EditItemTitles extends EditItem {
 
     constructor(target, autosave) {
+        
         super(target, autosave);
+        
         const self = this;
 
         const infoPack = { 

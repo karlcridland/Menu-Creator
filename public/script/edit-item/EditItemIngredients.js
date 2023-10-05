@@ -8,9 +8,11 @@ import { EditItem } from "./EditItem.js";
 export class EditItemIngredients extends EditItem {
 
     constructor(target, autosave) {
+
         super(target, autosave);
+
         const self = this;
-        this.display.setAttribute('id', 'edit-item-ingredients-display')
+        this.display.setAttribute('id', 'edit-item-ingredients-display');
         this.results = createElement(this.display, 'div', 'edit-item-ingredient-results');
         this.settings = createElement(this.display, 'div', null, 'edit-item-ingredient-settings');
         this.input = createElement(this.settings, 'input', null, 'edit-item-ingredient-input');
@@ -19,7 +21,8 @@ export class EditItemIngredients extends EditItem {
         self.displayIngredients();
         self.path = [];
 
-        this.input.setAttribute('placeholder', 'new ingredient');
+        this.input.setAttribute('placeholder', 'New ingredient');
+        this.input.focus();
 
         const helpIcon = createElement(this.help, 'img');
         helpIcon.src = `../../resources/help.svg`;
@@ -33,26 +36,18 @@ export class EditItemIngredients extends EditItem {
         const self = this;
 
         let suggestion;
-        let mouseover = false;
 
         suggestion = self.promptSuggestion();
         this.suggestion.appendChild(suggestion.display);
 
         this.input.addEventListener('focus', () => {
-            
-            suggestion.display.onmouseover = function () {
-                mouseover = true;
-            }
-            suggestion.display.onmouseout = function () {
-                mouseover = false;
-            }
 
             suggestion.action.onclick = function () {
                 self.selectIngredient(suggestion);
             }
 
             this.input.addEventListener('blur', () => {
-                if (!mouseover) removeSuggestion();
+                removeSuggestion();
             });
 
             this.input.addEventListener('keypress', (e) => {

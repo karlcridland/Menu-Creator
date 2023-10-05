@@ -1,0 +1,60 @@
+#edit-item-allergen-display {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    max-height: 500px;
+}
+
+.edit-item-allergen-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-height: 200px;
+}
+
+.edit-item-allergen-section>h1 {
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+#edit-item-allergen-doesnt,
+#edit-item-allergen-contains {
+    flex-grow: 1;
+    margin: 12px;
+    margin-top: 0;
+    padding: 6px;
+    overflow: scroll;
+}
+
+#edit-item-allergen-doesnt {
+    margin-right: 6px;
+}
+
+#edit-item-allergen-contains {
+    margin-left: 6px;
+}
+
+.edit-item-allergen {
+    margin: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    width: fit-content;
+    display: block;
+    position: relative;
+    background-color: #1dbd9b;
+    color: #fff;
+    float: left;
+    cursor: pointer;
+    transition: ease background-color 200ms;
+}
+
+.edit-item-allergen:hover {
+    background-color: #179b7e;
+}
+
+.unmutable {
+    background-color: #7a7a7a;
+    pointer-events: none;
+}
