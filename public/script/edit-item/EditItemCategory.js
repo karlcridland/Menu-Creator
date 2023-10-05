@@ -37,8 +37,8 @@ export class EditItemCategory extends EditItem {
             submit.classList.add('hidden');
             input.value = '';
             self.displayCategories();
-            self.autosave();
             self.markCompleted(true);
+            self.autosave();
         })
 
     }
@@ -60,8 +60,8 @@ export class EditItemCategory extends EditItem {
                 })
                 option.classList.add('selected');
                 self.target.category = category;
-                self.autosave();
                 self.markCompleted(true);
+                self.autosave();
             }
         })
         if (this.allCategories.length === 0){
@@ -72,7 +72,7 @@ export class EditItemCategory extends EditItem {
     autosave(){
         super.autosave();
         const self = this;
-        if (self.shouldAutosave){
+        if (self.shouldAutosave()){
             self.target.setCategory();
         }
     }

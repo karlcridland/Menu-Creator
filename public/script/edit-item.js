@@ -41,10 +41,9 @@ const headersDiv = document.getElementById('edit-item-toolbar');
 const headerButtons = {};
 
 Object.entries(headers).forEach(([header, necessary]) => {
-    const button = document.createElement('button');
+    const button = createElement(headersDiv, 'button', null, `edit-item-header-${header}`);
     headerButtons[header] = button;
     button.innerHTML = `<div>${header}</div>${necessary ? '<span></span>' : ''}`;
-    headersDiv.appendChild(button);
 
     button.addEventListener('click', () => {
         Object.values(headerButtons).forEach((b) => {
@@ -122,6 +121,6 @@ export function editItem(target, autosave){
     openSection('nutrition', new EditItemNutrition(item, autosave));
     openSection('allergens', new EditItemAllergens(item, autosave));
 
-    headerButtons['nutrition'].click();
+    headerButtons['category'].click();
 
 }

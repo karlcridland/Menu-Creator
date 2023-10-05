@@ -127,7 +127,6 @@ export class MenuItem {
         readOnceDB(`menus/${uid}/${this.id}/macros`, (macros) => {
             menuItem.macros = macros;
             menuItem.display();
-            console.log("booooo")
         });
     }
 

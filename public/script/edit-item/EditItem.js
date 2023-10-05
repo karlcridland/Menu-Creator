@@ -6,11 +6,18 @@ export class EditItem{
 
     constructor(target, autosave){
         this.target = target;
-        this.shouldAutosave = autosave;
+        this.target.shouldAutosave = autosave;
         this.display = document.createElement('div');
+
+        if (!autosave) this.target.necessary = this.target.necessary || {
+            category: false,
+            titles: false,
+            ingredients: false
+        }
     }
     
     stylesheet(id){
+        this.type = id;
         if (stylesheets.includes(id)) return;
         stylesheets.push(id);
         
@@ -19,14 +26,31 @@ export class EditItem{
         link.setAttribute('rel', `stylesheet`);
     }
 
-    autosave(){
+    shouldAutosave(){
+        return this.target.shouldAutosave;
+    }
 
+    autosave(){
+        const self = this;
+        if (!this.shouldAutosave()){
+            const isReady = Object.values(this.target.necessary).filter(x => x === false).length === 0;
+            if (isReady){
+                self.target.save();
+                this.target.shouldAutosave = true;
+            }
+        }
     }
     
     markCompleted(isCompleted){
         const self = this;
-        if (isCompleted) self.headerButton.classList.add('completed');
-        else self.headerButton.classList.remove('completed');
+        if (self.headerButton){
+            if (isCompleted) self.headerButton.classList.add('completed');
+            else self.headerButton.classList.remove('completed');
+
+            if (Object.keys(self.target.necessary).includes(self.type)){
+                self.target.necessary[self.type] = isCompleted;
+            }
+        }
     }
 
 }

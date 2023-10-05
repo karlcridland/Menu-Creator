@@ -66,10 +66,8 @@ export class EditItemNutrition extends EditItem {
                     self.autosave();
                 });
 
-                if (document.activeElement !== input){
-                    input.focus();
-                    shouldClickButton = false;
-                }
+                input.focus();
+                input.select();
 
             })
 
@@ -80,7 +78,7 @@ export class EditItemNutrition extends EditItem {
     autosave() {
         super.autosave();
         const self = this;
-        if (self.shouldAutosave) {
+        if (self.shouldAutosave()) {
             console.log(this.target.macros);
             self.target.setNutrition();
         }

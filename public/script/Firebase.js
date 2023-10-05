@@ -30,7 +30,7 @@ export function readOnceDB(path, callback) {
     onValue(ref(database, path), (snapshot) => {
         callback(snapshot.val() || {});
     }, {
-        once: true
+        onlyOnce: true
     });
 }
 

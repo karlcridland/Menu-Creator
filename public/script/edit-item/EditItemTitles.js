@@ -46,7 +46,7 @@ export class EditItemTitles extends EditItem {
     autosave(){
         super.autosave();
         const self = this;
-        if (self.shouldAutosave){
+        if (self.shouldAutosave()){
             self.target.setTitles();
         }
     }

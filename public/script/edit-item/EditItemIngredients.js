@@ -85,6 +85,7 @@ export class EditItemIngredients extends EditItem {
     removeSuggestion() {
         const self = this;
         self.input.value = '';
+        this.promptSuggestion();
         self.input.blur();
         removeSuggestion();
         self.autosave();
@@ -111,15 +112,17 @@ export class EditItemIngredients extends EditItem {
         const self = this;
         self.results.innerHTML = '';
         self.target.ingredients.forEach((ingredient) => {
-            const block = createElement(self.results, 'div', 'edit-item-ingredient', `ingredient-${ingredient.id}`);
+            const block = createElement(self.results, 'div', 'edit-item-ingredient');
             block.textContent = ingredient.name.toLowerCase();
             block.onclick = function () {
                 const index = self.target.ingredients.map(x => x.id).indexOf(ingredient.id);
                 self.target.ingredients.splice(index, 1);
                 self.displayIngredients();
                 self.removeSuggestion();
+                self.autosave();
             }
         });
+        self.markCompleted(self.target.ingredients.length > 0);
     }
 
     autosave(){

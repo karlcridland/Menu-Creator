@@ -1,11 +1,11 @@
 import { editItem } from "./edit-item.js";
 import { createElement } from "./results.js";
 
-let allButtons = {};
-
 export const editor = document.getElementById('editor');
 export const panel = document.getElementById('editing-panel');
 export const searchBar = document.getElementById('search');
+
+let allButtons = {};
 
 ['select', 'search', '', 'sort by created', 'sort by alphabet', '', 'menu item', 'export'].forEach(function (id) {
     if (id === '') {
@@ -89,7 +89,7 @@ function searchItem(isOpen) {
 }
 
 newItem.addEventListener('click', () => {
-    editItem();
+    editItem(undefined, false);
 })
 
 groupButtons(['select', 'search']);

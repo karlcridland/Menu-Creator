@@ -66,6 +66,7 @@ class Suggestion {
     updateButtons() {
         const self = this;
         if (self.suggestions.length > 0) {
+            self.display.style.pointerEvents = 'all';
             self.left.style.display = 'block';
             self.right.style.display = 'block';
             self.setText(self.suggestions[self.currentSuggestion]);
@@ -90,6 +91,7 @@ class Suggestion {
         else {
             self.left.style.display = 'none';
             self.right.style.display = 'none';
+            self.display.style.pointerEvents = 'none';
             self.setText('No suggestions.');
         }
     }
@@ -106,5 +108,5 @@ HTMLElement.prototype.suggest = function (suggestions) {
 }
 
 export function removeSuggestion() {
-    // suggestion.display.style.display = 'none';
+    // suggestion.setSuggestions([]);
 }

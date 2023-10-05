@@ -79,7 +79,7 @@ export class EditItemAllergens extends EditItem {
     autosave() {
         super.autosave();
         const self = this;
-        if (self.shouldAutosave) {
+        if (self.shouldAutosave()) {
             self.target.setAllergens();
         }
     }
