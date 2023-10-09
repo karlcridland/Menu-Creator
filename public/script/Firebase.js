@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
 import { getDatabase, ref, onValue, set, get, child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut as logOff } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 import { Profile, profile, setProfile } from "./profile.js";
 
 const firebaseConfig = {
@@ -62,26 +62,42 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         setProfile(user.uid);
     } else {
-        profile = undefined;
+        setProfile(undefined);
+        const signInMenu = document.getElementById('authentication');
+        signInMenu.classList.add('active');
     }
 });
 
-writeDB('ingredients/ING000217', {
-    "locales": {
-        "de": "Kopfsalat",
-        "el": "μαρούλι",
-        "en": "lettuce",
-        "es": "lechuga",
-        "fr": "laitue",
-        "hu": "fejes saláta",
-        "it": "lattuga",
-        "jp": "レタス",
-        "pl": "sałata",
-        "pt": "alface",
-        "ru": "салат",
-        "zh": "生菜"
-      },
-      "name": "lettuce",
-      "tags": ["vegetables", "ingredient"]
-    
-});
+// writeDB('ingredients/ING000217', {
+//     "locales": {
+//         "de": "Kopfsalat",
+//         "el": "μαρούλι",
+//         "en": "lettuce",
+//         "es": "lechuga",
+//         "fr": "laitue",
+//         "hu": "fejes saláta",
+//         "it": "lattuga",
+//         "jp": "レタス",
+//         "pl": "sałata",
+//         "pt": "alface",
+//         "ru": "салат",
+//         "zh": "生菜"
+//     },
+//     "name": "lettuce",
+//     "tags": ["vegetables", "ingredient"]
+
+// });
+
+export function signOut(success, failure) {
+    logOff(auth).then(() => {
+        success();
+    }).catch((error) => {
+        failure(error);
+    });
+}
+
+signOut(() => {
+    console.log('success');
+}, () => {
+    console.log('failure');
+})
