@@ -66,22 +66,22 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// writeDB('ingredients/ING000213', {
-//     "allergens": ["crustaceans"],
-//     "locales": {
-//       "de": "Hummer",
-//       "el": "αστακός",
-//       "en": "lobster",
-//       "es": "langosta",
-//       "fr": "homard",
-//       "hu": "homár",
-//       "it": "astice",
-//       "jp": "ロブスター",
-//       "pl": "homar",
-//       "pt": "lagosta",
-//       "ru": "омар",
-//       "zh": "龙虾"
-//     },
-//     "name": "lobster",
-//     "tags": ["seafood", "ingredient"]
-// });
+writeDB('ingredients/ING000217', {
+    "locales": {
+        "de": "Kopfsalat",
+        "el": "μαρούλι",
+        "en": "lettuce",
+        "es": "lechuga",
+        "fr": "laitue",
+        "hu": "fejes saláta",
+        "it": "lattuga",
+        "jp": "レタス",
+        "pl": "sałata",
+        "pt": "alface",
+        "ru": "салат",
+        "zh": "生菜"
+      },
+      "name": "lettuce",
+      "tags": ["vegetables", "ingredient"]
+    
+});

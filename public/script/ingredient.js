@@ -87,8 +87,8 @@ export function getIngredients(callback) {
             if (value.tags !== undefined && !value.tags.includes('meal')) ingredients[key] = ingredient;
             else dishes[key] = ingredient;
 
-            if (value.name.includes('lobs')){
-                // console.log(ingredient.id+" "+ingredient.name);
+            if (value.name.includes('lettuce')){
+                console.log(ingredient.id+" "+ingredient.name);
             }
 
             if (value.allergens) {

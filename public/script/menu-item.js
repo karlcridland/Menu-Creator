@@ -77,10 +77,10 @@ export class MenuItem {
         const uid = profile.uid;
         readDB(`menus/${uid}/${this.id}/title`, (title) => {
             menuItem.title = title;
-            readDB(`menus/${uid}/${this.id}/subtitle`, (subtitle) => {
-                menuItem.subtitle = subtitle;
-                menuItem.display();
-            });
+            menuItem.display();
+        });
+        readDB(`menus/${uid}/${this.id}/subtitle`, (subtitle) => {
+            menuItem.subtitle = subtitle;
             menuItem.display();
         });
     }

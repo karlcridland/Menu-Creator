@@ -6,7 +6,7 @@ export class EditItem{
 
     constructor(target, autosave){
         this.target = target;
-        this.target.shouldAutosave = autosave;
+        this.target.shouldAutosave = this.target.shouldAutosave || autosave;
         this.display = document.createElement('div');
 
         if (!autosave) this.target.necessary = this.target.necessary || {
@@ -27,10 +27,11 @@ export class EditItem{
     }
 
     shouldAutosave(){
-        return this.target.shouldAutosave;
+        return this.target;
     }
 
     autosave(){
+        console.log(this.shouldAutosave());
         const self = this;
         if (!this.shouldAutosave()){
             const isReady = Object.values(this.target.necessary).filter(x => x === false).length === 0;

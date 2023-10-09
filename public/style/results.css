@@ -6,6 +6,16 @@
     box-shadow: 0 2px 12px -5px #00000038;
     max-width: 400px;
     min-width: 300px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: ease transform 500ms, ease box-shadow 500ms;
+}
+
+#results>.thumbnail:hover{
+    transform: translateY(-4px) rotate(-0.5deg);
+    box-shadow: 0 4px 12px -5px #00000048;
 }
 
 #results>.thumbnail>.header {
@@ -30,7 +40,7 @@
 #results>.thumbnail>.text-section>h1 {
     margin: unset;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 #results>.thumbnail>.text-section>h2 {

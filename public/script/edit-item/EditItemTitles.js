@@ -30,6 +30,7 @@ export class EditItemTitles extends EditItem {
         inputs['subtitle'].value = target.subtitle || '';
 
         inputs['title'].addEventListener('keyup', () => {
+            console.log('test 1')
             const val = inputs['title'].value;
             title.textContent = val;
             target.title = val;
@@ -39,8 +40,10 @@ export class EditItemTitles extends EditItem {
 
         inputs['subtitle'].addEventListener('keyup', () => {
             target.subtitle = inputs['subtitle'].value;
+            console.log('test 2')
             self.autosave();
         })
+
     }
 
     autosave(){

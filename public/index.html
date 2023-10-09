@@ -12,10 +12,35 @@
   <link href="./style/edit-item.css" rel="stylesheet">
   <link href="./style/helper.css" rel="stylesheet">
   <link href="./style/suggestion.css" rel="stylesheet">
+  <link href="./style/authentication.css" rel="stylesheet">
 
 </head>
 
 <body>
+
+  <div id="authentication">
+    <div id="sign-in">
+      <div style="flex-grow: 1;"></div>
+      <div id="profile-picture"></div>
+      <div style="flex-grow: 1;"></div>
+      <h1>Do you have an account with us? Sign in here:</h1>
+      <div style="height: 20px;"></div>
+      <h1>Otherwise, <a>sign up</a>!</h1>
+      <div style="flex-grow: 1;"></div>
+      <input type="email" placeholder="Email address" class="grey-area"/>
+      <div style="height: 20px;"></div>
+      <input type="password" placeholder="Password" class="grey-area"/>
+      <div style="height: 20px;"></div>
+      <button>sign in</button>
+      <div style="flex-grow: 3;"></div>
+      <a>Forgotten your password?</a>
+      <div style="flex-grow: 1;"></div>
+      <a>Privacy Policy</a>
+      <div style="height: 20px;"></div>
+    </div>
+    <div id="sign-up"></div>
+  </div>
+
   <div id="helper"></div>
   <div id="suggestion">
     <button id="suggest-left"><img src="./resources/chevron-left.svg"></button>
