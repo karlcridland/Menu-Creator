@@ -36,7 +36,8 @@
     pointer-events: all;
 }
 
-#sign-in>button {
+#sign-in>button,
+#sign-up>button {
     width: clamp(40%, 100px, 50%);
     margin: auto;
     padding: 8px;
@@ -50,13 +51,35 @@
     cursor: pointer;
 }
 
-
-#sign-in>button:hover {
-    transform: translateY(2px);
+#sign-in>button:hover,
+#sign-up>button:hover {
+    transform: translateY(1px);
     box-shadow: 0 1px 5px 2px #00000041;
 }
 
-#sign-in>h1 {
+#sign-up>#auth-back {
+    margin-left: 0px;
+    background-color: #000;
+    max-width: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#sign-up>#auth-back>img {
+    height: 24px;
+    width: 24px;
+    margin: auto;
+}
+
+#sign-up>#auth-back>span {
+    margin: auto;
+    line-height: 24px;
+    padding-right: 6px;
+}
+
+#sign-in>h1,
+#sign-up>h1 {
     font-size: 1rem;
     font-weight: 500;
     width: clamp(70%, 160px, 90%);
@@ -64,7 +87,12 @@
     text-align: center;
 }
 
-#sign-in>input {
+#sign-up>h1{
+    font-size: 1.4rem;
+}
+
+#sign-in>input,
+#sign-up>input {
     padding: 10px;
     font-size: 0.9rem;
 }
@@ -74,7 +102,8 @@
     cursor: pointer;
 }
 
-#sign-in>a {
+#sign-in>a,
+#sign-up>a {
     text-align: center;
     cursor: pointer;
     font-size: 0.8rem;
@@ -83,7 +112,8 @@
     transition: ease text-shadow 300ms, ease color 300ms;
 }
 
-#sign-in>a:hover {
+#sign-in>a:hover,
+#sign-up>a:hover {
     color: #007de3;
     text-shadow: 0 2px 3px #0003;
 }
