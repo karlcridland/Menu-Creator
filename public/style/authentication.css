@@ -43,7 +43,7 @@
     padding: 8px;
     color: #fff;
     border: unset;
-    background-color: coral;
+    background-color: #000;
     font-size: 1rem;
     border-radius: 6px;
     box-shadow: 0 2px 7px 2px #00000024;
@@ -58,7 +58,7 @@
 }
 
 #sign-up>#auth-back {
-    margin-left: 0px;
+    margin-left: 5%;
     background-color: #000;
     max-width: 100px;
     display: flex;
@@ -87,7 +87,7 @@
     text-align: center;
 }
 
-#sign-up>h1{
+#sign-up>h1 {
     font-size: 1.4rem;
 }
 
@@ -95,10 +95,12 @@
 #sign-up>input {
     padding: 10px;
     font-size: 0.9rem;
+    width: 80%;
+    margin: auto;
 }
 
 #sign-in>h1>a {
-    color: green;
+    color: #0076d7;
     cursor: pointer;
 }
 
@@ -126,7 +128,7 @@
     width: 70px;
     height: 70px;
     background-color: #f7fbff;
-    border: solid 6px #d7d7d7;
+    border: solid 6px #ebebeb;
     border-radius: 100px;
     box-shadow: inset 0 0 18px -2px #0008;
     overflow: hidden;
@@ -140,16 +142,68 @@
     width: 40%;
     height: 40%;
     background-color: #535353;
-    top: 30%;
+    top: 32%;
     left: 30%;
     z-index: 1;
     border-radius: 100px;
 }
 
 #profile-picture::after {
-    transform: scale(1.8, 1.6) translate(0, 75%);
+    top: 70%;
+    left: 15%;
+    width: 70%;
+    border-radius: 200px !important;
 }
 
 #profile-picture::before {
     box-shadow: 0 0 22px -2px #0008;
+    transition: ease transform 300ms;
+    animation-name: head-bob;
+    animation-duration: 3.4s;
+    animation-iteration-count: 999999;
+}
+
+@keyframes head-bob {
+    0% {
+        transform: unset;
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: unset;
+    }
+}
+
+#sign-in-error {
+    border: solid 2px #ca3726;
+    background-color: #fff2ef;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 0.8rem;
+    width: fit-content;
+    max-width: calc(90% - 28px);
+    margin: auto;
+    overflow: hidden;
+    transition: ease padding 300ms, ease border 300ms, ease height 300ms;
+    display: flex;
+    flex-direction: row;
+}
+
+#sign-in-error.disabled {
+    padding: 0;
+    border: unset;
+    height: 0;
+}
+
+#sign-in-error>img {
+    height: 24px;
+    margin: auto;
+    margin-right: 8px;
+}
+
+#sign-in-error>span {
+    margin: auto;
 }

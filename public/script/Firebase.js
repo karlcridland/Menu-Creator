@@ -54,19 +54,56 @@ export function writeDB(path, value) {
     });
 }
 
-export function signIn(email, password) {
-    signInWithEmailAndPassword(auth, email, password);
+export function signIn(email, password, failure) {
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            failure(error);
+        });
+}
+
+export function signUp(email, password, success, failure) {
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            success(setProfile(user.uid));
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            failure(error);
+        });
 }
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
         setProfile(user.uid);
+        document.body.style.pointerEvents = 'all';
     } else {
         setProfile(undefined);
         const signInMenu = document.getElementById('authentication');
         signInMenu.classList.add('active');
+        document.body.style.pointerEvents = 'none';
+        document.getElementById('sign-in-email').focus();
     }
 });
+
+export function signOut(success, failure) {
+    logOff(auth).then(() => {
+        success();
+    }).catch((error) => {
+        failure(error);
+    });
+}
+
+signOut(() => {
+    console.log('success');
+}, () => {
+    console.log('failure');
+})
 
 // writeDB('ingredients/ING000217', {
 //     "locales": {
@@ -87,17 +124,3 @@ onAuthStateChanged(auth, (user) => {
 //     "tags": ["vegetables", "ingredient"]
 
 // });
-
-export function signOut(success, failure) {
-    logOff(auth).then(() => {
-        success();
-    }).catch((error) => {
-        failure(error);
-    });
-}
-
-signOut(() => {
-    console.log('success');
-}, () => {
-    console.log('failure');
-})

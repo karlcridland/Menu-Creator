@@ -17,6 +17,7 @@ export function setProfile(uid) {
 
     // document.getElementById('new-item').click();
 
+    return profile;
 }
 
 export class Profile {
