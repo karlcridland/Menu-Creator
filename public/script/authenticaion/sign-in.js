@@ -46,12 +46,7 @@ signInButton.addEventListener('click', () => {
 
 [signInEmail, signInPassword].forEach((input) => {
     input.addEventListener('keyup', (e) => {
-        console.log(e.key)
-        if (e.key === 'Enter' || e.keyCode === 13){
-            attemptSignIn();
-        }
-        else{
-            displayError(null);
-        }
+        if (e.key === 'Enter' || e.keyCode === 13) attemptSignIn();
+        else displayError(null);
     })
 })

@@ -6,7 +6,7 @@ import "../script/authenticaion/sign-up.js";
 const signUpFormButton = document.getElementById('sign-up-form-button');
 const authBack = document.getElementById('auth-back');
 const signInEmail = document.getElementById('sign-in-email');
-const signUpFirst = document.getElementById('sign-up-first');
+const signUpBusiniess = document.getElementById('sign-up-business');
 
 signUpFormButton.addEventListener('click', () => {
     authenticationPane.scrollTo({
@@ -15,7 +15,7 @@ signUpFormButton.addEventListener('click', () => {
         behavior: "smooth"
     })
     window.setTimeout(() => {
-        signUpFirst.focus();
+        signUpBusiniess.focus();
     }, 400);
 })
 
