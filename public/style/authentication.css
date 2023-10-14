@@ -91,12 +91,62 @@
     font-size: 1.4rem;
 }
 
-#sign-in>input,
-#sign-up>input {
+#sign-up>label,
+input.auth-input {
     padding: 10px;
     font-size: 0.9rem;
-    width: 80%;
     margin: auto;
+    width: -webkit-fill-available;
+}
+
+div.auth-input{
+    margin: auto;
+    position: relative;
+    width: fit-content;
+    width: 80%;
+}
+
+div.auth-input::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #fff;
+    z-index: -1;
+    transition: ease 600ms transform, ease 600ms opacity;
+    font-size: 0.8rem;
+    padding-left: 8px;
+    opacity: 0;
+}
+
+div.auth-input:focus-within::after{
+    transform: translateY(-20px);
+    opacity: 1;
+}
+
+.hide-popup::after{
+    opacity: 0 !important;
+}
+
+#sign-up>label {
+    width: 90%;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: row;
+}
+
+#sign-up>label>div>input {
+    margin: auto;
+    margin-right: 20px;
+    margin-left: 12px;
+    accent-color: black;
+    transform: scale(1.2);
+}
+
+#sign-up>label>div>a {
+    color: #0076d7;
 }
 
 #sign-in>h1>a {
@@ -210,4 +260,45 @@
 #sign-in-error>span,
 #sign-up-error>span {
     margin: auto;
+}
+
+#terms-tick-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+
+#sign-in-email-wrapper::after{
+    content: 'Email address';
+}
+
+#sign-in-password-wrapper::after{
+    content: 'Password';
+}
+
+#sign-up-business-wrapper::after{
+    content: 'Business name';
+}
+
+#sign-up-first-wrapper::after{
+    content: 'First name';
+}
+
+#sign-up-last-wrapper::after{
+    content: 'Last name';
+}
+
+#sign-up-email-wrapper::after{
+    content: 'Email address';
+}
+
+#sign-up-password-wrapper::after{
+    content: 'Password';
+}
+
+#sign-up-confirm-wrapper::after{
+    content: 'Confirm password';
 }

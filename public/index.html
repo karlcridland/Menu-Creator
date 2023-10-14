@@ -27,10 +27,14 @@
       <div style="height: 20px;"></div>
       <h1>Otherwise, <a id="sign-up-form-button">sign up</a>!</h1>
       <div style="flex-grow: 1;"></div>
-      <input id="sign-in-email" type="email" placeholder="Email address" class="grey-area"/>
-      <div style="height: 20px;"></div>
-      <input id="sign-in-password" type="password" placeholder="Password" class="grey-area"/>
-      <div style="height: 20px;"></div>
+      <div id="sign-in-email-wrapper" class="auth-input">
+        <input id="sign-in-email" type="email" placeholder="Email address" class="grey-area auth-input" />
+      </div>
+      <div style="flex-grow: 1; min-height: 20px; max-height: 30px;"></div>
+      <div id="sign-in-password-wrapper" class="auth-input">
+        <input id="sign-in-password" type="password" placeholder="Password" class="grey-area auth-input" />
+      </div>
+      <div style="flex-grow: 1; min-height: 20px; max-height: 30px;"></div>
       <button id="sign-in-button">sign in</button>
       <div style="flex-grow: 1;"></div>
       <div id="sign-in-error" class="disabled"></div>
@@ -47,17 +51,44 @@
       <div style="flex-grow: 3;"></div>
       <h1>Sign up</h1>
       <div style="flex-grow: 3;"></div>
-      <input id="sign-up-business" type="text" placeholder="Business name" class="grey-area"/>
+
+      <div id="sign-up-business-wrapper" class="auth-input">
+        <input id="sign-up-business" type="text" placeholder="Business name" class="grey-area auth-input" />
+      </div>
       <div style="flex-grow: 1;"></div>
-      <input id="sign-up-first" type="text" placeholder="First name" class="grey-area"/>
+
+      <div id="sign-up-first-wrapper" class="auth-input">
+        <input id="sign-up-first" type="text" placeholder="First name" class="grey-area auth-input" />
+      </div>
       <div style="flex-grow: 1;"></div>
-      <input id="sign-up-last" type="text" placeholder="Last name" class="grey-area"/>
+
+      <div id="sign-up-last-wrapper" class="auth-input">
+        <input id="sign-up-last" type="text" placeholder="Last name" class="grey-area auth-input" />
+      </div>
       <div style="flex-grow: 1;"></div>
-      <input id="sign-up-email" type="email" placeholder="Email address" class="grey-area"/>
+
+      <div id="sign-up-email-wrapper" class="auth-input">
+        <input id="sign-up-email" type="email" placeholder="Email address" class="grey-area auth-input" />
+      </div>
       <div style="flex-grow: 1;"></div>
-      <input id="sign-up-password" type="password" placeholder="Password" class="grey-area"/>
+
+      <div id="sign-up-password-wrapper" class="auth-input">
+        <input id="sign-up-password" type="password" placeholder="Password" class="grey-area auth-input" />
+      </div>
       <div style="flex-grow: 1;"></div>
-      <input id="sign-up-confirm" type="password" placeholder="Confirm Password" class="grey-area"/>
+
+      <div id="sign-up-confirm-wrapper" class="auth-input">
+        <input id="sign-up-confirm" type="password" placeholder="Confirm password" class="grey-area auth-input" />
+      </div>
+      <div style="flex-grow: 1;"></div>
+
+      <label id="sign-up-terms">
+        <div id="terms-tick-holder">
+          <input id="terms-tickbox" type="checkbox">
+        </div>
+        <div>I have read and agreed to the <a href="./terms-and-conditions.html" target="_blank">terms & conditions</a>.
+        </div>
+      </label>
       <div style="flex-grow: 1;"></div>
       <button id="sign-up-button">confirm</button>
       <div style="flex-grow: 1;"></div>
@@ -89,13 +120,14 @@
           <h1 id="edit-item-title"></h1>
           <div id="edit-item-toolbar">
           </div>
-          
+
         </div>
         <div id="edit-item-footer-2">
         </div>
         <button id="edit-item-camera" class="edit-item-button"><img src="./resources/camera.svg"></button>
         <button id="edit-item-hidden" class="edit-item-button"><img id="eyeball" src="./resources/visible.svg"></button>
-        <button id="edit-item-favourite" class="edit-item-button"><img id="favourite" src="./resources/favourite-no.svg"></button>
+        <button id="edit-item-favourite" class="edit-item-button"><img id="favourite"
+            src="./resources/favourite-no.svg"></button>
         <button id="edit-item-delete" class="edit-item-button"><img src="./resources/trash.svg"></button>
         <button id="edit-item-close" class="edit-item-button"><img src="./resources/close.svg"></button>
       </div>

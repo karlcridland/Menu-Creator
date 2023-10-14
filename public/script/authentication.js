@@ -9,23 +9,26 @@ const signInEmail = document.getElementById('sign-in-email');
 const signUpBusiniess = document.getElementById('sign-up-business');
 
 signUpFormButton.addEventListener('click', () => {
-    authenticationPane.scrollTo({
-        top: 0,
-        left: authenticationPane.clientWidth,
-        behavior: "smooth"
+    scrollTo(authenticationPane.clientWidth, signUpBusiniess);
+    window.addEventListener('resize', () => {
+        scrollTo(authenticationPane.clientWidth, signUpBusiniess);
     })
-    window.setTimeout(() => {
-        signUpBusiniess.focus();
-    }, 400);
 })
 
 authBack.addEventListener('click', () => {
+    scrollTo(0, signInEmail);
+    window.addEventListener('resize', () => {
+        scrollTo(authenticationPane.clientWidth, signUpBusiniess);
+    })
+})
+
+function scrollTo(left, input) {
     authenticationPane.scrollTo({
         top: 0,
-        left: 0,
+        left: left,
         behavior: "smooth"
     });
     window.setTimeout(() => {
-        signInEmail.focus();
+        input.focus();
     }, 400);
-})
+}

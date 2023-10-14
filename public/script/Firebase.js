@@ -99,11 +99,11 @@ export function signOut(success, failure) {
     });
 }
 
-signOut(() => {
-    console.log('success');
-}, () => {
-    console.log('failure');
-})
+// signOut(() => {
+//     console.log('success');
+// }, () => {
+//     console.log('failure');
+// })
 
 // writeDB('ingredients/ING000217', {
 //     "locales": {

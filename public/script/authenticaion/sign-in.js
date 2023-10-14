@@ -48,5 +48,11 @@ signInButton.addEventListener('click', () => {
     input.addEventListener('keyup', (e) => {
         if (e.key === 'Enter' || e.keyCode === 13) attemptSignIn();
         else displayError(null);
+    });
+    ['input','focus'].forEach((listener) => {
+        input.addEventListener(listener, () => {
+            if (input.value === '') input.parentElement.classList.add('hide-popup');
+            else input.parentElement.classList.remove('hide-popup');
+        });
     })
 })
