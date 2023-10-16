@@ -131,7 +131,7 @@ div.auth-input:focus-within::after{
 }
 
 #sign-up>label {
-    width: 90%;
+    width: 80%;
     font-size: 0.85rem;
     display: flex;
     flex-direction: row;
