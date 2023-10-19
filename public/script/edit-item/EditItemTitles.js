@@ -30,7 +30,6 @@ export class EditItemTitles extends EditItem {
         inputs['subtitle'].value = target.subtitle || '';
 
         inputs['title'].addEventListener('keyup', () => {
-            console.log('test 1')
             const val = inputs['title'].value;
             title.textContent = val;
             target.title = val;

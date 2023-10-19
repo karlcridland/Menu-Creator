@@ -1,3 +1,4 @@
+import { ingredients } from "../ingredient.js";
 import { createElement } from "../results.js";
 
 let stylesheets = [];
@@ -14,6 +15,7 @@ export class EditItem{
             titles: false,
             ingredients: false
         }
+
     }
     
     stylesheet(id){
@@ -27,11 +29,10 @@ export class EditItem{
     }
 
     shouldAutosave(){
-        return this.target;
+        return this.target.shouldAutosave;
     }
 
     autosave(){
-        console.log(this.shouldAutosave());
         const self = this;
         if (!this.shouldAutosave()){
             const isReady = Object.values(this.target.necessary).filter(x => x === false).length === 0;
