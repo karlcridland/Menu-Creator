@@ -1,7 +1,8 @@
 export class SignUpError {
-    constructor(errorCheck, message) {
+    constructor(errorCheck, message, authentication) {
         this.errorCheck = errorCheck;
         this.message = message;
+        this.authentication = authentication;
     }
 
     check() {

@@ -1,3 +1,4 @@
+import { signUp, writeDB } from "../firebase.js";
 import { Authentication } from "./authentication.js";
 import { SignUpError } from "./sign-up-error.js";
 
@@ -7,10 +8,10 @@ export class SignUp extends Authentication {
         super(false);
 
         this.errors = [
-            new SignUpError(this.allFieldsFilled, 'Please fill out all fields.'),
-            new SignUpError(this.isValidEmail, 'Please enter a valid email address.'),
-            new SignUpError(this.isValidPassword, 'Please ensure your password is at least 10 characters long, contains at least one lowercase letter, one uppercase letter, one digit'),
-            new SignUpError(this.areTermsTicked, 'Terms & Conditions need to be agreed to in order to create an account.'),
+            new SignUpError(this.allFieldsFilled, 'Please fill out all fields.', this),
+            new SignUpError(this.isValidEmail, 'Please enter a valid email address.', this),
+            new SignUpError(this.isValidPassword, 'Please ensure your password is at least 10 characters long, contains at least one lowercase letter, one uppercase letter, one digit', this),
+            new SignUpError(this.areTermsTicked, 'Terms & Conditions need to be agreed to in order to create an account.', this),
         ];
 
         this.elements.push(this.createFlex(0, '0px'));
@@ -33,6 +34,7 @@ export class SignUp extends Authentication {
         this.elements.push(this.createTerms());
         this.elements.push(this.createFlex(1, '20px', '24px'));
         this.elements.push(this.createConfirmButton('continue', false));
+        this.elements.push(this.createFlex(1, '20px', '24px'));
         this.elements.push(this.errorMessage);
         this.elements.push(this.createFlex(6, '20px'));
         this.elements.push(this.createPrivacy());
@@ -53,7 +55,7 @@ export class SignUp extends Authentication {
             self.attemptSignUp();
         });
 
-        this.allFields().forEach((input) => {
+        Object.values(this.allFields()).forEach((input) => {
             input.addEventListener('keyup', (e) => {
                 if (e.key === 'Enter' || e.keyCode === 13) self.attemptSignUp();
                 else self.displayError(null);
@@ -108,16 +110,38 @@ export class SignUp extends Authentication {
     }
 
     attemptSignUp() {
-        if (shouldProceed()) {
-            console.log('All good, proceed.');
-        }
-        else {
-            console.log('Whoops, error displayed.');
+        const self = this;
+        if (self.shouldProceed()) {
+            const email = document.getElementById('sign-up-email').value;
+            const password = document.getElementById('sign-up-password').value;
+            signUp(email, password, (profile) => {
+                const uid = profile.uid;
+                const allFields = self.allFields();
+                writeDB(`users/${uid}/information/business`, allFields['business'].value).then(() => {
+                    writeDB(`users/${uid}/information/first_name`, allFields['first'].value).then(() => {
+                        writeDB(`users/${uid}/information/last_name`, allFields['last'].value).then(() => {
+                            writeDB(`users/${uid}/information/email`, allFields['email'].value).then(() => {
+                                console.log('done signing up!')
+                            })
+                        })
+                    })
+                })
+            }, (error) => {
+                console.log(error);
+            });
         }
     }
 
+    allFields() {
+        let results = {};
+        const ids = ['business', 'first', 'last', 'email', 'password', 'confirm'];
+        ids.map(x => results[x] = document.getElementById(`sign-up-${x}`));
+        return results;
+    }
+
     allFieldsFilled() {
-        const result = this.allFields().map(x => x.value).filter(x => x === "").length === 0;
+        const allFields = Object.values(this.authentication.allFields());
+        const result = allFields.map(x => x.value).filter(x => x === "").length === 0;
         return result;
     };
 
@@ -136,17 +160,6 @@ export class SignUp extends Authentication {
     areTermsTicked() {
         const termsAndConditions = document.getElementById('terms-tickbox');
         return termsAndConditions.checked;
-    }
-
-    allFields() {
-        const signUpBusiness = document.getElementById('sign-up-business');
-        const signUpFirst = document.getElementById('sign-up-first');
-        const signUpLast = document.getElementById('sign-up-last');
-        const signUpEmail = document.getElementById('sign-up-email');
-        const signUpPassword = document.getElementById('sign-up-password');
-        const signUpConfirm = document.getElementById('sign-up-confirm');
-
-        return [signUpBusiness, signUpFirst, signUpLast, signUpEmail, signUpPassword, signUpConfirm];
     }
 
     shouldProceed() {

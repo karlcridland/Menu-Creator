@@ -79,13 +79,15 @@ export function signUp(email, password, success, failure) {
 }
 
 onAuthStateChanged(auth, (user) => {
+    const authMenu = document.getElementById('authentication');
+    console.log(user)
     if (user) {
         setProfile(user.uid);
         document.body.style.pointerEvents = 'all';
+        authMenu.classList.remove('active');
     } else {
         setProfile(undefined);
-        const signInMenu = document.getElementById('authentication');
-        signInMenu.classList.add('active');
+        authMenu.classList.add('active');
         document.body.style.pointerEvents = 'none';
         document.getElementById('sign-in-email').focus();
     }
@@ -98,7 +100,7 @@ export function signOut(success, failure) {
         failure(error);
     });
 }
-
+// xaZty1-fevxis-sowwab
 // signOut(() => {
 //     console.log('success');
 // }, () => {
